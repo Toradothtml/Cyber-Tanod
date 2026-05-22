@@ -1705,7 +1705,7 @@
       }
       .dialog-text {
         font-family: var(--vt);
-        font-size: clamp(16px, 2.6vw, 24px);
+        font-size: clamp(20px, 3.2vw, 30px);
         color: var(--white);
         line-height: 1.4;
         flex: 1;
@@ -1844,23 +1844,41 @@
 
       /* Gmail UI */
       .px-gmail-wrap {
-        background: #08141f;
-        border: 3px solid #1a3a5f;
-        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 3px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
         overflow: hidden;
         max-height: 45vh;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
       }
       .px-gmail-topbar {
-        background: linear-gradient(90deg, #0c1c33, #131f3a);
-        border-bottom: 2px solid #1a3a5f;
-        padding: 4px 8px;
+        position: relative;
+        background: linear-gradient(90deg, #18335a, #1c3d6c);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+        padding: 8px 10px 8px 12px;
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
+      }
+      .px-gmail-topbar::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ff3b30;
+        box-shadow:
+          18px 0 #ffcc00,
+          36px 0 #34c759;
       }
       .px-gmail-logo-g {
         font-family: var(--px);
-        font-size: 7px;
+        font-size: 10px;
+        color: #fff;
+        letter-spacing: 0.2em;
+        margin-left: 50px;
       }
       .px-gmail-logo-g span:nth-child(1) {
         color: #4a90e2;
@@ -1882,45 +1900,54 @@
       }
       .px-gmail-search {
         flex: 1;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid #1e3850;
-        border-radius: 1px;
-        padding: 3px 6px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 10px;
+        padding: 5px 8px;
         font-family: var(--vt);
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.3);
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.72);
       }
       .px-gmail-body {
-        padding: 8px 10px;
+        padding: 10px 12px;
       }
       .px-gmail-field {
         display: flex;
         align-items: flex-start;
-        gap: 6px;
-        border-bottom: 1px solid rgba(0, 245, 255, 0.1);
-        padding: 5px 0;
+        gap: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 8px 0;
       }
       .px-gmail-lbl {
         font-family: var(--vt);
         font-size: 14px;
-        color: rgba(0, 245, 255, 0.55);
+        color: rgba(255, 255, 255, 0.7);
         min-width: 65px;
         flex-shrink: 0;
       }
       .px-gmail-val {
         font-family: var(--vt);
-        font-size: 28px;
-        color: #c0e0f8;
+        font-size: 26px;
+        color: #e4f5ff;
         flex: 1;
         line-height: 1.4;
       }
       .px-gmail-content {
         font-family: var(--vt);
-        font-size: 28px;
-        color: #90b8d8;
-        padding: 6px 0;
-        line-height: 1.3;
+        font-size: 32px;
+        color: #c6e5ff;
+        padding: 8px 0;
+        line-height: 1.35;
       }
+      /* Level 4 Specific White Theme */
+      .px-gmail-wrap.white-theme {
+        background: #ffffff !important;
+        border: 1px solid #dcdcdc !important;
+      }
+      .white-theme .px-gmail-lbl { color: #5f6368 !important; }
+      .white-theme .px-gmail-val { color: #202124 !important; }
+      .white-theme .px-gmail-content { color: #3c4043 !important; }
+
       .px-paperclip-area {
         display: flex;
         gap: 8px;
@@ -1929,31 +1956,38 @@
         flex-wrap: wrap;
       }
       .px-file-chip {
-        background: rgba(0, 245, 255, 0.07);
-        border: 2px solid rgba(0, 245, 255, 0.25);
-        border-radius: 2px;
-        padding: 4px 8px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+        padding: 8px 12px;
         font-family: var(--vt);
-        font-size: 20px;
-        color: var(--cyan);
+        font-size: 18px;
+        color: #b0e8ff;
         cursor: pointer;
-        transition: all 0.1s;
+        transition: all 0.15s;
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 8px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
       }
       .px-file-chip:hover {
-        background: rgba(0, 245, 255, 0.14);
-        border-color: var(--cyan);
+        background: rgba(255, 255, 255, 0.16);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+       .gmail-layout .px-gmail-lbl {
+        font-size: 18px;
       }
       .gmail-layout .px-gmail-val {
-        font-size: 38px;
+        font-size: 30px;
       }
       .gmail-layout .px-gmail-content {
-        font-size: 32px;
+        font-size: 36px;
+      }
+      .gmail-side-right .choice-grid {
+        grid-template-columns: 1fr;
       }
       .gmail-layout .px-file-chip {
-        font-size: 28px;
+        font-size: 18px;
       }
       .gmail-layout .px-send-btn {
         font-size: 11px;
@@ -2040,7 +2074,7 @@
         background: rgba(0, 0, 0, 0.3);
         border-bottom: 1px solid rgba(0, 245, 255, 0.2);
         padding: 7px 12px;
-        font-size: 7px;
+        font-size: 16px;
         color: var(--cyan);
         letter-spacing: 2px;
       }
@@ -2052,20 +2086,20 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       }
       .px-perm-avatar {
-        width: 28px;
-        height: 28px;
+        width: 40px;
+        height: 40px;
         border-radius: 2px;
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 9px;
+        font-size: 14px;
         font-family: var(--px);
         font-weight: bold;
       }
       .px-perm-name {
         font-family: var(--vt);
-        font-size: 20px;
+        font-size: 28px;
         color: var(--white);
         flex: 1;
       }
@@ -2075,8 +2109,8 @@
       }
       .px-perm-opt {
         font-family: var(--vt);
-        font-size: 16px;
-        padding: 6px 12px;
+        font-size: 22px;
+        padding: 10px 18px;
         border: 2px solid var(--gray);
         border-radius: 2px;
         color: var(--gray);
@@ -2111,17 +2145,273 @@
 
       /* File/folder */
       .file-display {
-        background: var(--panel);
-        border: 3px solid var(--yellow);
-        border-radius: 2px;
-        padding: 9px 16px;
+        position: relative;
+        background: linear-gradient(180deg, #f7fbff 0%, #eef6ff 100%);
+        border: 2px solid rgba(66, 133, 244, 0.25);
+        border-radius: 16px;
+        padding: 18px 18px 16px;
         font-family: var(--vt);
-        font-size: clamp(24px, 4vw, 40px);
-        color: var(--yellow);
-        text-align: center;
-        margin-bottom: 7px;
+        font-size: clamp(18px, 3.2vw, 32px);
+        color: #1a3a5e;
+        text-align: left;
+        margin-bottom: 12px;
+        letter-spacing: 0.3px;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        min-height: 120px;
+      }
+      .file-display::before {
+        content: "";
+        position: absolute;
+        top: 12px;
+        left: 14px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ff5f5f;
+        box-shadow:
+          20px 0 #ffc857,
+          40px 0 #59d8a1;
+      }
+      .file-display::after {
+        content: "Google Docs";
+        position: absolute;
+        top: 12px;
+        left: 74px;
+        font-size: 12px;
+        font-family: var(--vt);
+        color: #34699a;
+        text-transform: uppercase;
         letter-spacing: 1px;
-        animation: pulse-y 2s infinite;
+      }
+      .file-display.docs-preview {
+        border-radius: 20px;
+        padding: 16px;
+        background: linear-gradient(180deg, #ffffff 0%, #d9ecff 100%);
+      }
+      .file-display .doc-header {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .file-display .doc-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ff5f5f;
+        box-shadow:
+          18px 0 #ffc857,
+          36px 0 #59d8a1;
+      }
+      .file-display .doc-dot2 {
+        background: #ffc857;
+      }
+      .file-display .doc-dot3 {
+        background: #59d8a1;
+      }
+      .file-display .doc-label {
+        font-family: var(--vt);
+        font-size: 12px;
+        color: #246bb2;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+      .file-display .doc-name {
+        margin-top: 6px;
+        font-size: clamp(18px, 2.8vw, 30px);
+        color: #0f304d;
+        line-height: 1.25;
+        word-break: break-word;
+        white-space: pre-wrap;
+      }
+      .gb-preview-row {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 12px;
+        align-items: stretch;
+        margin-bottom: 12px;
+      }
+      .messenger-card {
+        background: linear-gradient(180deg, #ffffff 0%, #eef5ff 100%);
+        border: 2px solid rgba(66, 133, 244, 0.2);
+        border-radius: 18px;
+        min-height: 170px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+      }
+      /* Messenger Theme for Stage 7 */
+      .messenger-card.messenger-theme {
+        background: #ffffff !important;
+        border: 1px solid #e4e6eb !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+      }
+      .messenger-theme .msg-topbar {
+        background: #ffffff !important;
+        border-bottom: 1px solid #e4e6eb !important;
+        padding: 8px 12px !important;
+      }
+      .messenger-theme .msg-avatar {
+        background: #0084ff !important;
+      }
+      .messenger-theme .msg-name {
+        color: #050505 !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+        font-weight: bold !important;
+        font-size: 13px !important;
+      }
+      .messenger-theme .msg-status {
+        color: #65676b !important;
+        font-family: sans-serif !important;
+      }
+      .messenger-theme .chat-body {
+        justify-content: flex-end !important;
+      }
+      .messenger-theme .chat-bubble {
+        background: #0084ff !important;
+        color: #ffffff !important;
+        border-radius: 18px !important;
+        padding: 12px 18px !important;
+        font-family: sans-serif !important;
+        font-size: 26px !important;
+        box-shadow: none !important;
+        margin-left: auto !important;
+      }
+      .msg-topbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        background: rgba(66, 133, 244, 0.08);
+        border-bottom: 1px solid rgba(66, 133, 244, 0.15);
+      }
+      .msg-avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #4a90e2;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--px);
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .msg-name {
+        font-family: var(--px);
+        font-size: 14px;
+        color: #0f2a4f;
+      }
+      .msg-status {
+        font-family: var(--vt);
+        font-size: 11px;
+        color: #3b5f8d;
+      }
+      .chat-body {
+        flex: 1;
+        padding: 16px;
+        display: flex;
+        align-items: flex-start;
+      }
+      .chat-bubble {
+        max-width: 100%;
+        padding: 12px 14px;
+        border-radius: 18px;
+        font-family: var(--vt);
+        font-size: 18px;
+        line-height: 1.4;
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+      }
+      .bubble-good {
+        background: rgba(79, 221, 128, 0.18);
+        color: #13472c;
+      }
+      .bubble-bad {
+        background: rgba(255, 102, 102, 0.18);
+        color: #5f2121;
+      }
+      .good-bad-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 10px;
+      }
+      .gb-btn {
+        font-family: var(--px);
+        font-size: clamp(14px, 2vw, 20px);
+        padding: 18px 16px;
+        border: 3px solid transparent;
+        border-radius: 18px;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .gb-btn.good {
+        background: linear-gradient(180deg, rgba(181, 255, 182, 0.95) 0%, rgba(109, 226, 178, 0.7) 100%);
+        border-color: #19a04d;
+        color: #0f4b27;
+      }
+      .gb-btn.bad {
+        background: linear-gradient(180deg, rgba(255, 191, 191, 0.95) 0%, rgba(255, 132, 132, 0.75) 100%);
+        border-color: #d64242;
+        color: #5f1c1c;
+      }
+      .gb-btn:hover {
+        transform: translateY(-1px);
+      }
+      .gb-key {
+        font-family: var(--vt);
+        font-size: 10px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      @media (max-width: 900px) {
+        .gb-preview-row {
+          grid-template-columns: 1fr;
+        }
+        .good-bad-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      .choice-btn {
+        font-family: var(--px);
+        font-size: clamp(12px, 1.6vw, 18px);
+        padding: 18px 18px;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        border-radius: 18px;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--white);
+        text-align: left;
+        transition: all 0.15s;
+        line-height: 1.55;
+        white-space: normal;
+        word-break: break-word;
+        min-height: 70px;
+        position: relative;
+      }
+      .choice-btn:hover:not(:disabled) {
+        background: rgba(0, 186, 255, 0.12);
+        border-color: rgba(0, 186, 255, 0.35);
+        box-shadow:
+          0 0 16px rgba(0, 186, 255, 0.2),
+          4px 4px 0 rgba(0, 0, 0, 0.35);
+        color: #dcf8ff;
+      }
+      .choice-btn:active:not(:disabled) {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
       }
       .folder-grid {
         display: grid;
@@ -2488,6 +2778,11 @@
         text-align: center;
         background: rgba(0, 0, 0, 0.2);
       }
+      .file-icon {
+        height: 1em;
+        width: auto;
+        vertical-align: middle;
+      }
       .lb-clear-btn {
         font-family: var(--px);
         font-size: 6px;
@@ -2545,11 +2840,23 @@
     <audio id="fireballHit" preload="auto">
       <source src="fireballHit.wav" type="audio/wav" />
     </audio>
+    <audio id="introMusic" preload="auto" loop>
+      <source src="8-Bit Retro Video Game Melodies.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="countdownWarning" preload="auto">
+      <source src="Countdown 5 seconds timer.mp3" type="audio/mpeg" />
+    </audio>
     <audio id="bossMusic" preload="auto" loop>
       <source src="boss music.mp3" type="audio/mpeg" />
     </audio>
     <audio id="battleMusic" preload="auto" loop>
       <source src="normal battlemusic.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="clickSound" preload="auto">
+      <source src="Click.wav" type="audio/wav" />
+    </audio>
+    <audio id="victorySound" preload="auto">
+      <source src="victory.mp3" type="audio/mpeg" />
     </audio>
 
     <!-- ════════════ TITLE ════════════ -->
@@ -2567,6 +2874,14 @@
           <div class="title-story" id="title-story-text"></div>
           <div class="title-btns">
             <button
+              class="px-btn cy"
+              id="btn-continue"
+              style="display: none; width: 100%; margin-bottom: 10px;"
+              onclick="continueMission()"
+            >
+              CONTINUE MISSION
+            </button>
+            <button
               class="px-btn ye"
               onclick="goto('scr-charsel', 'INITIALIZING...')"
             >
@@ -2576,7 +2891,6 @@
             <button class="px-btn mg" onclick="showLeaderboard()">
               LEADERBOARD
             </button>
-
             <button class="px-btn gy" onclick="devJump()">
               DEV: LEVEL JUMP
             </button>
@@ -2732,6 +3046,7 @@
       <div class="battle-hud">
         <div class="bhud-l">
           <div class="bhud-team" id="bhud-team">TEAM ---</div>
+          <button class="px-btn ye" style="padding: 4px 8px; font-size: 7px; margin-top: 4px; display: block; border-width: 2px;" onclick="quitToMap()">QUIT TO MAP</button>
           <div class="bhud-progress" id="prog-dots"></div>
         </div>
         <div class="bhud-c">
@@ -2825,6 +3140,7 @@
 
     <!-- ════════════ CERTIFICATE ════════════ -->
     <div class="screen" id="scr-cert">
+      <div id="cert-confetti" style="position: absolute; inset: 0; pointer-events: none; z-index: 0;"></div>
       <div class="cert-card">
         <div class="cert-avatar-panel">
           <div class="cert-avatar-frame">
@@ -2976,10 +3292,28 @@
       //  CONSTANTS & CONFIG
       // ══════════════════════════════════════════════════════
       const LB_KEY = "ctWW_v4";
+      const SESSION_KEY = "ctWW_session_v4";
       const MAX_XP = 600;
       const TILE = 32;
       const MAP_COLS = 30,
         MAP_ROWS = 22;
+
+      function quitToMap() {
+        if (!confirm("Quit current level and return to map?")) return;
+        const b = document.getElementById("battleMusic");
+        if (b) { b.pause(); b.currentTime = 0; }
+        const m = document.getElementById("bossMusic");
+        if (m) { m.pause(); m.currentTime = 0; }
+        const cw = document.getElementById("countdownWarning");
+        if (cw) { cw.pause(); cw.currentTime = 0; }
+        clearTimer();
+        saveSession();
+        goto("scr-map", "ABORTING MISSION...", "Returning to map");
+        setTimeout(() => {
+          initMap();
+          if (introMusicEnabled) playIntroMusic();
+        }, 350);
+      }
 
       const XP_TIERS = [
         {
@@ -3075,8 +3409,47 @@
         shuffledLevels: [],
       };
 
+      function saveSession() {
+        const sessionData = {
+          teamName: GS.teamName,
+          charId: GS.charId,
+          xp: GS.xp,
+          unlockedLevel: GS.unlockedLevel,
+          levelScores: GS.levelScores,
+          gameStartTime: GS.gameStartTime,
+          shuffledLevels: GS.shuffledLevels
+        };
+        localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
+      }
+
+      function continueMission() {
+        const saved = localStorage.getItem(SESSION_KEY);
+        if (!saved) return;
+        const data = JSON.parse(saved);
+        Object.assign(GS, data);
+        
+        ["battleMusic", "bossMusic"].forEach((id) => {
+          const m = document.getElementById(id);
+          if (m) { m.play().then(() => m.pause()).catch(() => {}); }
+        });
+
+        goto("scr-map", "RESUMING MISSION...", `Welcome back, ${GS.teamName}!`);
+        setTimeout(() => initMap(), 350);
+      }
+
+      function checkSession() {
+        const saved = localStorage.getItem(SESSION_KEY);
+        const btn = document.getElementById("btn-continue");
+        if (saved && btn) {
+          btn.style.display = "block";
+        } else if (btn) {
+          btn.style.display = "none";
+        }
+      }
+
       const keys = {};
       const dpadKeys = {};
+      let introMusicEnabled = true;
 
       function shuffleArray(arr) {
         const copy = arr.slice();
@@ -3095,6 +3468,29 @@
           return out;
         }
         return value;
+      }
+
+      function getFileIcon(filename) {
+        if (!filename || typeof filename !== "string") return "";
+        const parts = filename.split(".");
+        if (parts.length < 2) return "";
+        const ext = parts.pop().toLowerCase();
+
+        let iconSrc = "";
+        switch (ext) {
+          case "docx": case "doc": iconSrc = "docx.png"; break;
+          case "xlsx": case "xls": iconSrc = "xlsx.png"; break;
+          case "pdf": iconSrc = "pdf.png"; break;
+          case "txt": iconSrc = "txt.png"; break;
+          case "pptx": case "ppt": iconSrc = "ppt.png"; break;
+          case "jpg": case "jpeg": case "png": case "gif": return "🖼️";
+          case "mp3": case "wav": return "🎵";
+          case "mp4": case "avi": return "🎬";
+          case "exe": return "⚙️";
+          case "zip": case "rar": return "📦";
+          default: return "📄";
+        }
+        return `<img src="${iconSrc}" class="file-icon" alt="${ext}">`;
       }
 
       function shuffleLevels(levels) {
@@ -3220,7 +3616,7 @@
           enemy: "NAMING CHAOS",
           weakKey: "naming",
           uiType: "goodbad",
-          roundTime: 7,
+          roundTime: 10,
           items: [
             { text: "Cruz_Math_Project_Final.docx", good: true },
             {
@@ -3561,7 +3957,7 @@
           enemy: "RUDE EMAILER",
           weakKey: "etiquette",
           uiType: "goodbad",
-          roundTime: 8,
+          roundTime: 15,
           items: [
             { text: "Good morning, Teacher. I hope you are well.", good: true },
             {
@@ -3612,96 +4008,77 @@
         {
           id: 8,
           title: "LEVEL 8",
-          name: "ULTIMATE BOSS: The Deadline Relay!",
+          name: "THE ULTIMATE DEADLINE RELAY",
           enemy: "DEADLINE BOSS",
           weakKey: "email",
           uiType: "boss",
-          bossTime: 100,
+          bossTime: 120,
           steps: [
             {
               title: "STEP 1: FILE NAMING",
-              player: "SQUAD 1",
+              uiType: "choice",
               dialog:
-                "The Deadline Boss is here! First, identify the most professional and organized filename for Kuya Ben's Science Essay.",
-              tag: "Ben",
+                "Deadline Boss appears! First, fix this filename to be perfectly organized:",
+              tag: "SYS",
               choices: [
-                {
-                  text: "Ben_Cruz_G5_Science_Essay_v2.docx",
-                  xp: 25,
-                  correct: true,
-                },
+                { text: "Ben_Cruz_G5_Science_Essay_v2.docx", xp: 25, correct: true },
                 { text: "Essay_Final_Final_FOR_REAL.docx", xp: -10 },
-                { text: "asdfghjkl.docx", xp: -10 },
-              ],
+                { text: "asdfghjkl.docx", xp: -10 }
+              ]
             },
             {
-              title: "STEP 2: SUBJECT LINE",
-              player: "SQUAD 2",
-              dialog:
-                "Now for the email! Which subject line helps Teacher Maria know EXACTLY what this is in her crowded inbox?",
-              tag: "Maria",
+              title: "STEP 2: SPEED CHECK",
+              uiType: "goodbad",
+              dialog: "Identify if this filename is GOOD or BAD instantly!",
+              item: { text: "untitled_copy(2).pptx", good: false },
+              tag: "SYS"
+            },
+            {
+              title: "STEP 3: SUBJECT LINE",
+              uiType: "gmail-subject",
+              toField: "Teacher.Maria@school.edu.ph",
+              bodyPreview: "Attached is my Science Essay for Q2...",
+              dialog: "Quick! Set a professional subject line for the teacher:",
+              tag: "SYS",
               choices: [
-                {
-                  text: "Science Essay Submission — Ben Cruz (5-Rizal)",
-                  xp: 25,
-                  correct: true,
-                },
+                { text: "Science Submission - Ben Cruz (5-Rizal)", xp: 25, correct: true },
                 { text: "here is my homework", xp: -10 },
-                { text: "URGENT!!! READ NOW", xp: -10 },
-              ],
+                { text: "Science Essay", xp: 10 }
+              ]
             },
             {
-              title: "STEP 3: ATTACHMENT",
-              player: "SQUAD 3",
-              dialog:
-                "Kuya Ben has many files. The prompt says 'Send the final revised copy'. Which one is the right one?",
-              tag: "Ben",
-              choices: [
-                { text: "Ben_Science_Essay_v2.docx", xp: 25, correct: true },
-                { text: "random_selfie.png", xp: -10 },
-                { text: "Ben_Science_Essay_v1_DRAFT.docx", xp: -10 },
-              ],
+              title: "STEP 4: ATTACHMENT",
+              uiType: "gmail-attach",
+              dialog: "Don't forget the file! Attach the correct essay:",
+              emailBody: "Dear Teacher,\nPlease see my attached Science project.\n\nThanks, Ben",
+              correctFile: "Ben_Science_Essay_v2.docx",
+              fileChoices: ["Ben_Science_Essay_v2.docx", "old_draft.txt", "img_001.png", "Game.exe"],
+              tag: "Ben"
             },
             {
-              title: "STEP 4: ORGANIZATION",
-              player: "SQUAD 4",
-              dialog:
-                "Where is the best place for Kuya Ben to store this file on his computer so it stays organized for the future?",
-              tag: "Maria",
-              choices: [
-                { text: "Science Projects Folder", xp: 25, correct: true },
-                { text: "The Recycle Bin", xp: -10 },
-                { text: "The Desktop Background", xp: -10 },
-              ],
+              title: "STEP 5: FOLDER SORT",
+              uiType: "folders",
+              dialog: "Organize this file into the correct folder!",
+              file: { name: "Lab_Results.xlsx", folder: "Science" },
+              folders: ["Math", "Science", "English", "Others"],
+              tag: "SYS"
             },
             {
-              title: "STEP 5: PERMISSIONS",
-              player: "SQUAD 1",
-              dialog:
-                "Teacher Maria wants to grade the work, but she shouldn't be allowed to change Ben's writing. Set the permission!",
-              tag: "Maria",
-              choices: [
-                { text: "Viewer (Can only read)", xp: 25, correct: true },
-                { text: "Editor (Can change and delete)", xp: -10 },
-                { text: "Public (Anyone can see it)", xp: -10 },
-              ],
+              title: "STEP 6: PERMISSIONS",
+              uiType: "permissions",
+              dialog: "Set the correct access for Teacher Maria (Reviewer):",
+              recipient: { name: "Teacher Maria", initial: "T", color: "#30a040" },
+              correctRole: "Viewer",
+              tag: "SYS"
             },
             {
-              title: "STEP 6: ETIQUETTE",
-              player: "SQUAD 2",
-              dialog:
-                "Final Step! Choose the most professional way to start the email to Teacher Maria.",
-              tag: "Ben",
-              choices: [
-                {
-                  text: "Good morning Teacher Maria, I hope you are well.",
-                  xp: 25,
-                  correct: true,
-                },
-                { text: "HEEY MISS CHECK MY FILE ASAP!!!", xp: -10 },
-                { text: "k noted thx", xp: -10 },
-              ],
-            },
+              title: "STEP 7: MESSENGER ETIQUETTE",
+              uiType: "goodbad",
+              isMessenger: true,
+              dialog: "Is this professional for a chat with your teacher?",
+              item: { text: "hey miss grade ko check mo ASAP thx", good: false },
+              tag: "Ben"
+            }
           ],
           bonusAll: 30,
           completionBonus: 50,
@@ -3942,6 +4319,10 @@
       //  SCREEN TRANSITION
       // ══════════════════════════════════════════════════════
       function goto(id, msg = "LOADING...", sub = "") {
+        const vs = document.getElementById("victorySound");
+        if (vs && id !== 'scr-cert') { vs.pause(); vs.currentTime = 0; }
+        if (["scr-battle", "scr-score", "scr-cert"].includes(id))
+          stopIntroMusic();
         const ov = document.getElementById("trans");
         document.getElementById("trans-content").childNodes[0].textContent =
           msg;
@@ -4156,6 +4537,7 @@
           "Kuya Ben forgot EVERYTHING.\nDeadline in 3 minutes!\nKayo ang kanyang EMERGENCY\nTECH SUPPORT TEAM!",
           35,
         );
+        checkSession();
       }
 
       function previewChar(id) {
@@ -4208,6 +4590,56 @@
         document.getElementById("team-input").focus();
       }
 
+      function fadeAudio(audio, targetVolume, duration = 600, onComplete) {
+        if (!audio) return;
+        clearInterval(audio.__fadeInterval);
+        const start = audio.volume;
+        const delta = targetVolume - start;
+        if (duration <= 0) {
+          audio.volume = targetVolume;
+          if (onComplete) onComplete();
+          return;
+        }
+        const stepTime = 50;
+        const steps = Math.max(1, Math.round(duration / stepTime));
+        let step = 0;
+        audio.__fadeInterval = setInterval(() => {
+          step += 1;
+          audio.volume = Math.min(
+            1,
+            Math.max(0, start + (delta * step) / steps),
+          );
+          if (step >= steps) {
+            clearInterval(audio.__fadeInterval);
+            delete audio.__fadeInterval;
+            if (onComplete) onComplete();
+          }
+        }, stepTime);
+      }
+
+      function playIntroMusic() {
+        const m = document.getElementById("introMusic");
+        introMusicEnabled = true;
+        if (!m) return;
+        if (m.paused) {
+          m.volume = 0;
+          m.currentTime = 0;
+          m.play().catch(() => {});
+          fadeAudio(m, 1, 600);
+        } else {
+          fadeAudio(m, 1, 600);
+        }
+      }
+
+      function stopIntroMusic() {
+        const m = document.getElementById("introMusic");
+        if (!m || m.paused) return;
+        fadeAudio(m, 0, 600, () => {
+          m.pause();
+          m.currentTime = 0;
+        });
+      }
+
       function confirmName() {
         const v = document
           .getElementById("team-input")
@@ -4224,6 +4656,7 @@
         GS.teamName = v;
         GS.gameStartTime = Date.now();
         GS.shuffledLevels = shuffleLevels(LEVELS);
+        localStorage.removeItem(SESSION_KEY); // New run starts fresh
 
         // Prime audio to satisfy browser autoplay policies
         ["battleMusic", "bossMusic"].forEach((id) => {
@@ -4853,10 +5286,42 @@
         }
         GS.currentLevel = idx;
 
-        // Apply big panel sizing to Level 3 (index 2), Level 4 (index 3), and Level 5 (index 4)
+        // LEVEL 8 DYNAMIC GENERATION: Pick one question from Levels 1-7
+        if (idx === 7) {
+          const bossLvl = LEVELS[idx];
+          bossLvl.steps = [];
+          for (let i = 0; i < 7; i++) {
+            const source = getShuffledLevel(i);
+            let step = { title: source.name, uiType: source.uiType, tag: "SYS" };
+            
+            if (source.uiType === "choice" || source.uiType === "gmail-subject") {
+              const q = source.questions[Math.floor(Math.random() * source.questions.length)];
+              Object.assign(step, q);
+              if (source.uiType === "gmail-subject") { step.toField = source.toField; step.bodyPreview = source.bodyPreview; }
+            } else if (source.uiType === "goodbad") {
+              step.item = source.items[Math.floor(Math.random() * source.items.length)];
+              step.isMessenger = (i === 6); // Keep messenger design for the etiquette level
+            } else if (source.uiType === "gmail-attach") {
+              const q = source.questions[Math.floor(Math.random() * source.questions.length)];
+              Object.assign(step, q);
+            } else if (source.uiType === "folders") {
+              step.file = source.files[Math.floor(Math.random() * source.files.length)];
+              step.folders = source.folders;
+            } else if (source.uiType === "permissions") {
+              const q = source.questions[Math.floor(Math.random() * source.questions.length)];
+              const rec = q.recipients[Math.floor(Math.random() * q.recipients.length)];
+              step.recipient = rec;
+              step.correctRole = q.correctMap[rec.name];
+            }
+            bossLvl.steps.push(step);
+          }
+          bossLvl.steps = shuffleArray(bossLvl.steps);
+        }
+
+        // Apply big panel sizing to Level 3, 4, 5, 7, and 8
         const arena = document.getElementById("battle-arena");
         const bottom = document.querySelector(".battle-bottom");
-        if (idx === 2 || idx === 3 || idx === 4) {
+        if (idx === 2 || idx === 3 || idx === 4 || idx === 5 || idx === 6 || idx === 7) {
           arena.classList.add("small-arena-top");
           bottom.classList.add("big-panel-bottom");
         } else {
@@ -5037,7 +5502,8 @@
           choices.forEach((c, i) => {
             const btn = document.createElement("button");
             btn.className = "choice-btn";
-            btn.textContent = c.text;
+            const icon = getFileIcon(c.text);
+            btn.innerHTML = (icon ? icon + " " : "") + c.text;
             btn.dataset.key = i + 1;
             btn.addEventListener("click", () =>
               handleChoice(c, qs[qIdx], () => {
@@ -5069,14 +5535,42 @@
           }
           item = items[iIdx];
           const wrap = document.getElementById("choices-wrap");
+
+          const isLvl2 = idx === 1;
+          const isLvl7 = idx === 6;
+
           wrap.innerHTML = `
-      <div class="file-display">${item.text}</div>
+      <div class="gb-preview-row" style="${(isLvl2 || isLvl7) ? 'display:block;' : ''}">
+        ${!isLvl7 ? `
+        <div class="file-display docs-preview">
+          <div class="doc-header">
+            <span class="doc-dot"></span>
+            <span class="doc-dot doc-dot2"></span>
+            <span class="doc-dot doc-dot3"></span>
+            <div class="doc-label">Google Docs</div>
+          </div>
+          <div class="doc-name">${getFileIcon(item.text)} ${item.text}</div>
+        </div>` : ''}
+        ${!isLvl2 ? `
+        <div class="messenger-card ${isLvl7 ? "messenger-theme" : ""}">
+          <div class="msg-topbar">
+            <div class="msg-avatar">B</div>
+            <div>
+              <div class="msg-name">Ben Cruz</div>
+              <div class="msg-status">Draft message preview</div>
+            </div>
+          </div>
+          <div class="chat-body">
+            <div class="chat-bubble ${item.good ? "bubble-good" : "bubble-bad"}">${getFileIcon(item.text)}${getFileIcon(item.text) ? " " : ""}${item.text}</div>
+          </div> 
+        </div>` : ''}
+      </div>
       <div class="good-bad-row">
-        <button class="gb-btn good" id="gb-good" onclick="handleGB(true)">✓ GOOD NAME<br><span style="font-size:5px;font-family:var(--vt);">[G KEY]</span></button>
-        <button class="gb-btn bad" id="gb-bad" onclick="handleGB(false)">✗ BAD NAME<br><span style="font-size:5px;font-family:var(--vt);">[B KEY]</span></button>
+        <button class="gb-btn good" id="gb-good" onclick="handleGB(true)">✓ GOOD<br><span class="gb-key">[G]</span></button>
+        <button class="gb-btn bad" id="gb-bad" onclick="handleGB(false)">✗ BAD<br><span class="gb-key">[B]</span></button>
       </div>`;
           typeDialogText(
-            `Q${iIdx + 1}/${items.length}: Is this a GOOD or BAD filename/phrase?`,
+            `Q${iIdx + 1}/${items.length}: Is this a GOOD or BAD message?`,
             "SYS",
           );
           GS.inputLocked = false;
@@ -5166,35 +5660,36 @@
           }
           const q = qs[qIdx];
           const wrap = document.getElementById("choices-wrap");
+          wrap.classList.add("gmail-layout");
           wrap.innerHTML = `
-      <div class="px-gmail-wrap" style="margin-bottom:6px;">
+    <div class="gmail-side-left">
+      <div class="px-gmail-wrap white-theme" style="margin-bottom:6px;">
         <div class="px-gmail-topbar">
           <div class="px-gmail-logo-g"><span>G</span><span>m</span><span>a</span><span>i</span><span>l</span></div>
           <div class="px-gmail-search">Search mail...</div>
         </div>
         <div class="px-gmail-body" style="padding:7px 10px;">
           <div class="px-gmail-field"><div class="px-gmail-lbl">To:</div><div class="px-gmail-val">${lvl.toField}</div></div>
-          <div class="px-gmail-field"><div class="px-gmail-lbl">Subject:</div><div class="px-gmail-val" id="subject-preview" style="color:#ffe600;font-style:italic;">??? (choose below)</div></div>
-          <div class="px-gmail-content">${lvl.bodyPreview}</div>
+          <div class="px-gmail-field"><div class="px-gmail-lbl">Subject:</div><div class="px-gmail-val" id="subject-preview" style="color:#ff2244 !important;font-style:italic;">??? (choose below)</div></div>
+          <div class="px-gmail-content" style="font-size:36px;">${lvl.bodyPreview}</div>
         </div>
       </div>
-      <div class="choice-grid" id="choice-grid"></div>`;
+    </div>
+    <div class="gmail-side-right">
+      <div class="choice-grid" id="choice-grid"></div>
+    </div>`;
           const grid = document.getElementById("choice-grid");
           q.choices.forEach((c, i) => {
             const btn = document.createElement("button");
             btn.className = "choice-btn small";
-            btn.textContent = c.text;
+            const icon = getFileIcon(c.text);
+            btn.innerHTML = (icon ? icon + " " : "") + c.text;
             btn.dataset.key = i + 1;
             btn.addEventListener("click", () => handleSC(c, q));
             grid.appendChild(btn);
           });
           typeDialogText(q.dialog, q.tag || "SYS");
-          const timeForQ = Math.max(
-            14,
-            q.dialog.length / 7 +
-              q.choices.reduce((a, c) => a + c.text.length, 0) / 8 +
-              4,
-          );
+          const timeForQ = 20;
           GS.inputLocked = false;
           startTimer(timeForQ, () => {
             if (!GS.inputLocked) handleSC(null, q);
@@ -5267,7 +5762,7 @@
 
         wrap.innerHTML = `
     <div class="gmail-side-left">
-      <div class="px-gmail-wrap">
+      <div class="px-gmail-wrap white-theme">
         <div class="px-gmail-topbar">
           <div class="px-gmail-logo-g"><span>G</span><span>m</span><span>a</span><span>i</span><span>l</span></div>
           <div class="px-gmail-search">Composing new message...</div>
@@ -5275,15 +5770,15 @@
         <div class="px-gmail-body" style="padding:6px 10px;">
           <div class="px-gmail-field"><div class="px-gmail-lbl">To:</div><div class="px-gmail-val">Teacher.Maria@school.edu.ph</div></div>
           <div class="px-gmail-field"><div class="px-gmail-lbl">Subject:</div><div class="px-gmail-val">Science Essay — Ben Cruz — Grade 5</div></div>
-          <div class="px-gmail-content" style="font-size:32px;">${q.emailBody.replace(/\n/g, "<br>")}</div>
+          <div class="px-gmail-content" style="font-size:42px;">${q.emailBody.replace(/\n/g, "<br>")}</div>
         </div>
       </div>
     </div>
     <div class="gmail-side-right">
       <div style="font-family:var(--px); font-size:8px; color:var(--cyan); margin-bottom:4px;">📎 ATTACH:</div>
       <div id="attach-area" style="display:flex; flex-direction:column; gap:6px;">
-        ${q.fileChoices.map((f, i) => `<div class="px-file-chip" id="fc-${i}" onclick="selectAttachment('${f}',${i})">📄 ${f}</div>`).join("")}
-      </div>
+        ${q.fileChoices.map((f, i) => `<div class="px-file-chip" id="fc-${i}" onclick="selectAttachment('${f}',${i})">${getFileIcon(f)} ${f}</div>`).join("")}
+      </div> 
       <div style="flex:1"></div>
       <div style="font-family:var(--vt);font-size:14px;color:var(--gray);line-height:1.2;margin-bottom:8px;" id="attach-status">Select the correct file then click SEND!</div>
       <button class="px-send-btn" onclick="sendEmail(${idx})" id="send-btn" style="width:100%; padding:10px;">📨 SEND EMAIL</button>
@@ -5294,6 +5789,13 @@
         );
         GS.inputLocked = false;
         GS.attachSelected = null;
+        
+        // Restore timer for Level 4
+        startTimer(20, () => {
+          if (!GS.inputLocked) {
+            window.sendEmail(idx);
+          }
+        });
       }
 
       window.selectAttachment = function (fname, idx2) {
@@ -5308,6 +5810,7 @@
       window.sendEmail = function (levelIdx) {
         if (GS.inputLocked) return;
         GS.inputLocked = true;
+        clearTimer();
         const lvl = getShuffledLevel(levelIdx);
         const q = lvl.questions[GS.currentSubIdx];
         if (!GS.attachSelected) {
@@ -5424,11 +5927,11 @@
       </div>
       <div class="px-files-row" id="files-row">
         ${remaining
-          .map(
-            (f) =>
-              `<div class="px-file-item" id="fi-${f.name.replace(/[^a-z0-9]/gi, "-")}" onclick="selectFileForFolder('${f.name}')">📄 ${f.name}</div>`,
-          )
-          .join("")}
+ .map(
+ (f) =>
+              `<div class="px-file-item" id="fi-${f.name.replace(/[^a-z0-9]/gi, "-")}" onclick="selectFileForFolder('${f.name}')">${getFileIcon(f.name)} ${f.name}</div>`,
+ )
+ .join("")} 
       </div>`;
         }
         render();
@@ -5542,11 +6045,14 @@
           )
           .join("")}
       </div>
-      <div style="display:flex;justify-content:flex-end;padding:5px 7px;">
-        <button class="px-send-btn" onclick="submitPerms(${idx},${qIdx})">SUBMIT PERMISSIONS</button>
+       <div style="display:flex;justify-content:center;padding:15px 7px;">
+         <button class="px-send-btn" style="font-size: 16px; padding: 18px 32px; width: 100%;" onclick="submitPerms(${idx},${qIdx})">SUBMIT PERMISSIONS</button>
       </div>`;
           typeDialogText(q.dialog, q.tag || "SYS");
           GS.inputLocked = false;
+          startTimer(15, () => {
+            if (!GS.inputLocked) window.submitPerms(idx, qIdx);
+          });
           window.setPerm = function (name, role, btn) {
             const row = document.getElementById(
               `pdd-${name.replace(/\s+/g, "-")}`,
@@ -5561,6 +6067,7 @@
           window.submitPerms = function (lIdx, qIdx2) {
             if (GS.inputLocked) return;
             GS.inputLocked = true;
+            clearTimer();
             const q2 = qs[qIdx2];
             let xpEarned = 0,
               allCorrect = true;
@@ -5617,14 +6124,28 @@
         btEl.style.height = "72px";
         btEl.classList.add("show");
         document.getElementById("timer-num").style.fontSize = "16px";
-        document.getElementById("timer-num").textContent = bossTimeLeft;
+        document.getElementById("timer-num").textContent = Math.ceil(bossTimeLeft);
 
-        const bossInt = setInterval(() => {
-          bossTimeLeft--;
-          document.getElementById("timer-num").textContent = bossTimeLeft;
-          if (bossTimeLeft <= 15) btEl.classList.add("urgent");
-          if (bossTimeLeft <= 0) {
-            clearInterval(bossInt);
+        let bossEndTime = Date.now() + bossTimeLeft * 1000;
+        let lastBossDisplay = Math.ceil(bossTimeLeft);
+        let bossWarned = false;
+
+        GS.bossTimerInterval = setInterval(() => {
+          const now = Date.now();
+          const remaining = Math.max(0, Math.ceil((bossEndTime - now) / 1000));
+          
+          if (remaining !== lastBossDisplay) {
+            lastBossDisplay = remaining;
+            document.getElementById("timer-num").textContent = lastBossDisplay;
+            if (lastBossDisplay === 5 && !bossWarned) {
+              playCountdownWarning();
+              bossWarned = true;
+            }
+            if (lastBossDisplay <= 15) btEl.classList.add("urgent");
+          }
+
+          if (now >= bossEndTime) {
+            clearTimer();
             showFeedback(
               "⏰ TIME IS UP! Kuya Ben missed the deadline! 😱",
               false,
@@ -5634,11 +6155,11 @@
               endLevel(idx);
             }, 2500);
           }
-        }, 1000);
+        }, 100);
 
         function doStep() {
           if (GS.bossStep >= lvl.steps.length) {
-            clearInterval(bossInt);
+            clearTimer();
             btEl.classList.remove("show", "urgent");
             const bonus =
               bossCorrect === lvl.steps.length
@@ -5659,45 +6180,184 @@
           }
           const step = lvl.steps[GS.bossStep];
           const wrap = document.getElementById("choices-wrap");
-          wrap.innerHTML = `
-      <div style="font-size:6px;color:var(--cyan);padding:3px 0 6px;letter-spacing:2px;">
-        🎮 ${step.player} — STEP ${GS.bossStep + 1}/${lvl.steps.length}: ${step.title}
-      </div>
-      <div class="choice-grid" id="boss-choices"></div>`;
-          const grid = document.getElementById("boss-choices");
-          step.choices.forEach((c, i) => {
-            const btn = document.createElement("button");
-            btn.className = "choice-btn";
-            btn.textContent = c.text;
-            btn.dataset.key = i + 1;
-            btn.addEventListener("click", () =>
-              handleBossChoice(c, step, bossInt),
-            );
-            grid.appendChild(btn);
-          });
-          typeDialogText(step.dialog, step.tag || step.player);
+          wrap.className = "choices-wrap";
+          wrap.innerHTML = `<div style="font-size:6px;color:var(--cyan);padding:3px 0 6px;letter-spacing:2px;">🎮 STEP ${GS.bossStep + 1}/${lvl.steps.length}: ${step.title}</div>`;
+
+          switch(step.uiType) {
+            case "choice":
+            case "gmail-subject":
+              renderBossChoices(step);
+              break;
+            case "goodbad":
+              renderBossGoodBad(step);
+              break;
+            case "gmail-attach":
+              renderBossAttach(step);
+              break;
+            case "folders":
+              renderBossFolders(step);
+              break;
+            case "permissions":
+              renderBossPermissions(step);
+              break;
+          }
+          typeDialogText(step.dialog, step.tag || "SYS");
           GS.inputLocked = false;
         }
 
-        function handleBossChoice(choice, step, bossInt2) {
+        function renderBossChoices(step) {
+          const wrap = document.getElementById("choices-wrap");
+          if (step.uiType === "gmail-subject") {
+             wrap.innerHTML += `<div class="px-gmail-wrap" style="margin-bottom:6px;"><div class="px-gmail-topbar"><div class="px-gmail-logo-g"><span>G</span><span>m</span><span>a</span><span>i</span><span>l</span></div></div><div class="px-gmail-body"><div class="px-gmail-field"><div class="px-gmail-lbl">To:</div><div class="px-gmail-val">${step.toField}</div></div><div class="px-gmail-field"><div class="px-gmail-lbl">Subject:</div><div class="px-gmail-val" id="subject-preview" style="color:#ff2244;font-style:italic;">???</div></div><div class="px-gmail-content" style="font-size:32px;">${step.bodyPreview}</div></div></div>`;
+          }
+          const grid = document.createElement("div");
+          grid.className = "choice-grid";
+          step.choices.forEach((c, i) => {
+            const btn = document.createElement("button");
+            btn.className = "choice-btn";
+            const icon = getFileIcon(c.text);
+            btn.innerHTML = (icon ? icon + " " : "") + c.text;
+            btn.onclick = () => {
+              if (step.uiType === "gmail-subject") document.getElementById("subject-preview").textContent = c.text;
+              handleBossChoice(c, step);
+            };
+            grid.appendChild(btn);
+          });
+          wrap.appendChild(grid);
+        }
+
+        function renderBossGoodBad(step) {
+          const wrap = document.getElementById("choices-wrap");
+          const isMessenger = step.isMessenger;
+          const previewRow = document.createElement("div");
+          previewRow.className = "gb-preview-row";
+          previewRow.style.display = "block";
+          previewRow.innerHTML = !isMessenger ? `
+            <div class="file-display docs-preview">
+              <div class="doc-header"><span class="doc-dot"></span><div class="doc-label">Google Docs</div></div>
+              <div class="doc-name">${getFileIcon(step.item.text)} ${step.item.text}</div>
+            </div>` : `
+            <div class="messenger-card messenger-theme">
+              <div class="msg-topbar"><div class="msg-avatar">B</div><div class="msg-name">Ben Cruz</div></div>
+              <div class="chat-body"><div class="chat-bubble ${step.item.good ? "bubble-good" : "bubble-bad"}">${getFileIcon(step.item.text)}${getFileIcon(step.item.text) ? " " : ""}${step.item.text}</div></div>
+            </div>`;
+          wrap.appendChild(previewRow);
+
+          const btnRow = document.createElement("div");
+          btnRow.className = "good-bad-row";
+          const btnG = document.createElement("button");
+          btnG.className = "gb-btn good";
+          btnG.innerHTML = "✓ GOOD";
+          btnG.onclick = () => handleBossChoice({correct: step.item.good === true, xp: step.item.good === true ? 25 : -10}, step);
+          const btnB = document.createElement("button");
+          btnB.className = "gb-btn bad";
+          btnB.innerHTML = "✗ BAD";
+          btnB.onclick = () => handleBossChoice({correct: step.item.good === false, xp: step.item.good === false ? 25 : -10}, step);
+          btnRow.appendChild(btnG);
+          btnRow.appendChild(btnB);
+          wrap.appendChild(btnRow);
+        }
+
+        function renderBossAttach(step) {
+          const wrap = document.getElementById("choices-wrap");
+          wrap.classList.add("gmail-layout");
+          const left = document.createElement("div");
+          left.className = "gmail-side-left";
+          left.innerHTML = `<div class="px-gmail-wrap"><div class="px-gmail-body"><div class="px-gmail-field"><div class="px-gmail-lbl">Subject:</div><div class="px-gmail-val">Science Submission</div></div><div class="px-gmail-content">${step.emailBody.replace(/\n/g, '<br>')}</div></div></div>`;
+          wrap.appendChild(left);
+
+          const right = document.createElement("div");
+          right.className = "gmail-side-right";
+          right.innerHTML = `<div style="font-family:var(--px); font-size:8px; color:var(--cyan); margin-bottom:4px;">📎 ATTACH:</div>`;
+          const chipArea = document.createElement("div");
+          chipArea.style.display = "flex"; chipArea.style.flexDirection = "column"; chipArea.style.gap = "6px";
+          window.bossSelectedFile = null;
+          step.fileChoices.forEach(f => {
+             const chip = document.createElement("div");
+             chip.className = "px-file-chip";
+             chip.innerHTML = `${getFileIcon(f)} ${f}`;
+             chip.onclick = () => { window.bossSelectedFile = f; chipArea.querySelectorAll('.px-file-chip').forEach(c=>c.classList.remove('selected')); chip.classList.add('selected'); };
+             chipArea.appendChild(chip);
+          });
+          right.appendChild(chipArea);
+          const sendBtn = document.createElement("button");
+          sendBtn.className = "px-send-btn"; sendBtn.style.marginTop = "10px"; sendBtn.innerHTML = "📨 SEND";
+          sendBtn.onclick = () => {
+            const isCorrect = window.bossSelectedFile === step.correctFile;
+            handleBossChoice({correct: isCorrect, xp: isCorrect ? 25 : -10}, step);
+          };
+          right.appendChild(sendBtn);
+          wrap.appendChild(right);
+        }
+
+        function renderBossFolders(step) {
+          const wrap = document.getElementById("choices-wrap");
+          const grid = document.createElement("div");
+          grid.className = "folder-grid";
+          step.folders.forEach(f => {
+            const folder = document.createElement("div");
+            folder.className = "px-folder";
+            folder.innerHTML = `<div class="px-folder-label">${f}</div>`;
+            folder.onclick = () => {
+              const isCorrect = f === step.file.folder;
+              handleBossChoice({correct: isCorrect, xp: isCorrect ? 25 : -10}, step);
+            };
+            grid.appendChild(folder);
+          });
+          wrap.appendChild(grid);
+          const fileRow = document.createElement("div");
+          fileRow.className = "px-files-row";
+          fileRow.innerHTML = `<div class="px-file-item selected">${getFileIcon(step.file.name)} ${step.file.name}</div>`;
+          wrap.appendChild(fileRow);
+        }
+
+        function renderBossPermissions(step) {
+          const wrap = document.getElementById("choices-wrap");
+          const share = document.createElement("div");
+          share.className = "px-share-wrap";
+          const row = document.createElement("div");
+          row.className = "px-perm-row";
+          row.innerHTML = `<div class="px-perm-avatar" style="color:${step.recipient.color}">${step.recipient.initial}</div><div class="px-perm-name">${step.recipient.name}</div>`;
+          const dd = document.createElement("div");
+          dd.className = "px-perm-dd";
+          ["Editor", "Viewer"].forEach(role => {
+            const opt = document.createElement("button");
+            opt.className = `px-perm-opt perm-${role.toLowerCase()}`;
+            opt.textContent = role;
+            opt.onclick = () => {
+              const isCorrect = role === step.correctRole;
+              handleBossChoice({correct: isCorrect, xp: isCorrect ? 25 : -10}, step);
+            };
+            dd.appendChild(opt);
+          });
+          row.appendChild(dd); share.appendChild(row); wrap.appendChild(share);
+        }
+
+        function handleBossChoice(choice, step) {
           if (GS.inputLocked) return;
           GS.inputLocked = true;
-          const xp = choice.xp,
-            correct = choice.correct;
-          const grid = document.getElementById("boss-choices");
-          highlightChoicesGeneric(
-            grid,
-            step.choices.indexOf(choice),
-            step.choices,
-          );
-          if (xp > 0) {
+          const xp = choice.xp || 0;
+          const correct = choice.correct === true;
+
+          const wrap = document.getElementById("choices-wrap");
+          wrap.querySelectorAll("button, .px-file-chip, .px-folder").forEach(el => {
+            el.style.pointerEvents = "none";
+            el.style.opacity = "0.7";
+          });
+
+          if (step.choices) {
+            const grid = wrap.querySelector(".choice-grid");
+            highlightChoicesGeneric(grid, step.choices.indexOf(choice), step.choices);
+          }
+
+          if (isCorrectAnswer) {
             GS.xp += xp;
             GS.correctCount++;
             bossCorrect++;
             GS.streak++;
             if (GS.streak > GS.maxStreak) GS.maxStreak = GS.streak;
             spawnFireball();
-            damageEnemy(22);
+            damageEnemy(15);
             spawnXP(`+${xp}XP`, true);
             showFeedback(
               `✓ Correct! ${GS.bossStep + 1}/${lvl.steps.length} done! Next player!`,
@@ -5707,15 +6367,17 @@
             GS.xp = Math.max(0, GS.xp + xp);
             GS.wrongCount++;
             GS.streak = 0;
-            GS.weaknessTracker["email"] =
-              (GS.weaknessTracker["email"] || 0) + 1;
-            bossTimeLeft = Math.max(0, bossTimeLeft - 10);
-            document.getElementById("timer-num").textContent = bossTimeLeft;
+            
+            bossEndTime = Math.max(Date.now(), bossEndTime - 10000);
+            const remaining = Math.max(0, Math.ceil((bossEndTime - Date.now()) / 1000));
+            lastBossDisplay = remaining;
+            document.getElementById("timer-num").textContent = lastBossDisplay;
+
             spawnEnemyAttack();
             shakeArena();
             spawnXP(`${xp}XP`, false);
             showFeedback(
-              `✗ Wrong! -10 seconds from the clock! Stay focused!`,
+              `✗ Wrong! -10s Penalty! Stay focused!`,
               false,
             );
           }
@@ -5760,6 +6422,7 @@
         clearTimer();
         if (idx >= GS.unlockedLevel && idx + 1 < LEVELS.length)
           GS.unlockedLevel = idx + 1;
+        saveSession();
         updateProgDots();
 
         // Back to map
@@ -5771,6 +6434,7 @@
           );
           setTimeout(() => {
             initMap();
+            if (introMusicEnabled) playIntroMusic();
             if (mapAnim === null) {
               let lastT = 0;
               function loop(ts) {
@@ -5785,6 +6449,7 @@
             updateMapHUD();
             // If all levels done, go to score
             if (GS.levelScores.length >= LEVELS.length) {
+              localStorage.removeItem(SESSION_KEY);
               setTimeout(() => showCertificate(), 1500);
             }
           }, 350);
@@ -5801,7 +6466,8 @@
         choices.forEach((c, i) => {
           const btn = document.createElement("button");
           btn.className = "choice-btn";
-          btn.textContent = c.text;
+          const icon = getFileIcon(c.text);
+          btn.innerHTML = (icon ? icon + " " : "") + c.text;
           btn.dataset.key = i + 1;
           grid.appendChild(btn);
         });
@@ -6065,6 +6731,14 @@
       }
 
       // Timer
+      function playCountdownWarning() {
+        const sound = document.getElementById("countdownWarning");
+        if (!sound) return;
+        sound.currentTime = 0;
+        sound.volume = 1;
+        sound.play().catch(() => {});
+      }
+
       function startTimer(secs, onEnd) {
         clearTimer();
         const el = document.getElementById("battle-timer");
@@ -6078,20 +6752,43 @@
         el.classList.add("show");
         el.classList.remove("urgent");
         txt.textContent = GS.timerValue;
+        
+        const targetTime = Date.now() + startSecs * 1000;
+        let warned = false;
+
+        if (GS.timerValue <= 5) {
+          el.classList.add("urgent");
+          if (GS.timerValue === 5) { playCountdownWarning(); warned = true; }
+        }
+
         GS.timerInterval = setInterval(() => {
-          GS.timerValue--;
-          txt.textContent = GS.timerValue;
-          if (GS.timerValue <= 5) el.classList.add("urgent");
-          if (GS.timerValue <= 0) {
+          const now = Date.now();
+          const remaining = Math.max(0, Math.ceil((targetTime - now) / 1000));
+          
+          if (remaining !== GS.timerValue) {
+            GS.timerValue = remaining;
+            txt.textContent = GS.timerValue;
+            if (GS.timerValue === 5 && !warned) {
+              playCountdownWarning();
+              warned = true;
+            }
+            if (GS.timerValue <= 5) el.classList.add("urgent");
+          }
+
+          if (now >= targetTime) {
             clearTimer();
             if (onEnd) onEnd();
           }
-        }, 1000);
+        }, 100);
       }
       function clearTimer() {
         if (GS.timerInterval) {
           clearInterval(GS.timerInterval);
           GS.timerInterval = null;
+        }
+        if (GS.bossTimerInterval) {
+          clearInterval(GS.bossTimerInterval);
+          GS.bossTimerInterval = null;
         }
         const el = document.getElementById("battle-timer");
         if (el) el.classList.remove("show", "urgent");
@@ -6209,6 +6906,12 @@
         document.getElementById("cert-time-summary").textContent = fmtTime(
           entry.time,
         );
+        const vs = document.getElementById("victorySound");
+        if (vs) {
+          vs.currentTime = 0;
+          vs.play().catch(() => {});
+        }
+        launchConfetti("cert-confetti");
         goto("scr-cert", "RETRIEVING CERTIFICATE...", entry.name);
       }
 
@@ -6294,8 +6997,8 @@
         goto("scr-score", "CALCULATING RESULTS...", "Processing XP...");
       }
 
-      function launchConfetti() {
-        const c = document.getElementById("score-confetti");
+      function launchConfetti(containerId = "score-confetti") {
+        const c = document.getElementById(containerId);
         c.innerHTML = "";
         const cols = [
           "#ffe600",
@@ -6339,6 +7042,7 @@
           cancelAnimationFrame(mapAnim);
           mapAnim = null;
         }
+        localStorage.removeItem(SESSION_KEY);
         document.getElementById("score-weakness").style.display = "none";
         goto("scr-charsel", "NEW GAME", "Select your character!");
         setTimeout(() => initCharSel(), 350);
@@ -6411,6 +7115,23 @@
         initTitle();
         // Pre-load char select
         initCharSel();
+        // Attempt to start intro music when the title screen appears
+        if (introMusicEnabled) playIntroMusic();
+
+        const titleEl = document.getElementById("scr-title");
+        const handleTitleGesture = () => {
+          if (titleEl.classList.contains("active")) playIntroMusic();
+        };
+        titleEl.addEventListener("pointerdown", handleTitleGesture, {
+          once: true,
+        });
+        window.addEventListener("keydown", function onFirstTitleKey(e) {
+          if (titleEl.classList.contains("active")) {
+            playIntroMusic();
+            window.removeEventListener("keydown", onFirstTitleKey);
+          }
+        });
+
         // Load any existing leaderboard
         const lb = loadLB();
         if (lb.length) renderLB(lb, "");
@@ -6421,6 +7142,27 @@
         const lb = loadLB();
         if (lb.length) renderLB(lb, "");
       });
+
+      // Global click sound effect
+      document.addEventListener(
+        "pointerdown",
+        (e) => {
+          const isButton = e.target.closest(
+            "button, .px-btn, .choice-btn, .gb-btn, .dpad-btn, .char-card, .px-file-chip, .px-folder, .px-file-item, .px-perm-opt",
+          );
+          if (!isButton) return;
+
+          const s = document.getElementById("clickSound");
+          if (s) {
+            s.currentTime = 0;
+            s.volume = 0.4;
+            s.play().catch((err) =>
+              console.warn("Click sound blocked or file missing:", err),
+            );
+          }
+        },
+        { capture: true },
+      );
     </script>
   </body>
 </html>
