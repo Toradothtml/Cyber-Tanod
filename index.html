@@ -1652,7 +1652,7 @@
       border: 2px solid rgba(255, 255, 255, 0.2);
       border-radius: 4px;
       transition: all 0.3s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .prog-dot.done {
@@ -1731,7 +1731,16 @@
     }
 
     .battle-arena.small-arena-top {
-      flex: 1;
+      flex: 0 0 38%;
+      min-height: 0;
+    }
+
+    .battle-arena.level4-battle-layout {
+      flex-basis: 35%;
+    }
+
+    .battle-arena.level3-battle-layout {
+      flex-basis: 32%;
     }
 
     .arena-bg-canvas {
@@ -2047,31 +2056,38 @@
 
     /* Level Instruction Overlay */
     .lvl-instruction-overlay {
-      position: absolute;
+      position: fixed;
       inset: 0;
-      margin: auto;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 150;
+      background: rgba(3, 6, 14, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      text-align: center;
+    }
+
+    .lvl-instruction-overlay.show {
+      display: flex;
+      animation: fade-in 0.2s ease forwards;
+    }
+
+    .lvl-instruction-overlay .inst-panel {
       width: 90%;
       max-width: 650px;
-      height: fit-content;
       max-height: 85%;
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background: rgba(4, 8, 22, 0.98);
-      z-index: 150;
-      text-align: center;
       padding: 24px;
       overflow-y: auto;
       border: 4px solid var(--cyan);
       border-radius: 8px;
       box-shadow: 0 0 50px rgba(0, 245, 255, 0.25);
       animation: cyber-border 3s infinite;
-    }
-
-    .lvl-instruction-overlay.show {
-      display: flex;
-      animation: bounce-in 0.4s ease forwards;
     }
 
     .inst-header {
@@ -2091,6 +2107,7 @@
       line-height: 1.5;
       max-width: 90%;
       margin-bottom: 24px;
+      white-space: pre-wrap;
     }
 
     .inst-footer {
@@ -2110,8 +2127,38 @@
     }
 
     .battle-bottom.big-panel-bottom {
-      flex: 0 0 auto;
-      max-height: 70%;
+      flex: 1 1 45%;
+      min-height: 340px;
+      max-height: 100%;
+      height: 100%;
+    }
+
+    .battle-bottom.level4-battle-layout {
+      flex: 1 1 55%;
+      min-height: 415px;
+    }
+
+    .battle-bottom.level4-battle-layout .choices-wrap {
+      padding: 8px 16px 10px;
+    }
+
+    .battle-bottom.level4-battle-layout .gmail-side-right {
+      gap: 6px;
+      padding: 6px;
+    }
+
+    .battle-bottom.level3-battle-layout {
+      flex: 1 1 54%;
+      min-height: 385px;
+    }
+
+    .battle-bottom.level3-battle-layout .choices-wrap {
+      padding: 8px 16px 10px;
+    }
+
+    .battle-bottom.level3-battle-layout .gmail-side-right {
+      gap: 6px;
+      padding: 6px;
     }
 
     .dialog-row {
@@ -2149,8 +2196,9 @@
 
     .choices-wrap {
       padding: 16px 20px 22px;
-      flex-shrink: 0;
-      overflow: hidden;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: auto;
     }
 
     .choice-grid {
@@ -2179,8 +2227,8 @@
     }
 
     .choice-btn.small {
-      font-size: clamp(11px, 1.4vw, 15px);
-      min-height: 50px;
+      font-size: clamp(13px, 1.6vw, 17px);
+      min-height: 56px;
     }
 
     .choice-btn::before {
@@ -2320,7 +2368,12 @@
       border: 3px solid rgba(255, 255, 255, 0.12);
       border-radius: 10px;
       overflow: hidden;
-      max-height: 45vh;
+      max-height: none;
+      min-height: 0;
+      width: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
     }
 
@@ -2387,12 +2440,16 @@
       border-radius: 10px;
       padding: 5px 8px;
       font-family: var(--vt);
-      font-size: 11px;
+      font-size: 15px;
       color: rgba(255, 255, 255, 0.72);
     }
 
     .px-gmail-body {
       padding: 6px 10px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
 
     .px-gmail-field {
@@ -2406,7 +2463,7 @@
 
     .px-gmail-lbl {
       font-family: var(--vt);
-      font-size: 16px;
+      font-size: 20px;
       color: rgba(255, 255, 255, 0.7);
       min-width: 80px;
       flex-shrink: 0;
@@ -2414,7 +2471,7 @@
 
     .px-gmail-val {
       font-family: var(--vt);
-      font-size: 26px;
+      font-size: 30px;
       color: #e4f5ff;
       flex: 1;
       line-height: 1.4;
@@ -2422,7 +2479,7 @@
 
     .px-gmail-content {
       font-family: var(--vt);
-      font-size: 34px;
+      font-size: 38px;
       color: #c6e5ff;
       padding: 6px 0;
       line-height: 1.35;
@@ -2488,6 +2545,44 @@
       font-size: 28px;
     }
 
+    .choices-wrap.level3-gmail .px-gmail-wrap {
+      width: 100%;
+      max-width: none;
+      min-height: 0;
+      overflow-y: auto;
+    }
+
+    .choices-wrap.level3-gmail .gmail-side-left {
+      align-self: flex-start;
+      height: auto;
+      min-height: 0;
+    }
+
+    .choices-wrap.level3-gmail .gmail-side-right {
+      align-self: flex-start;
+    }
+
+    .choices-wrap.level3-gmail .px-gmail-topbar {
+      padding: 8px 10px 8px 12px;
+    }
+
+    .choices-wrap.level3-gmail .px-gmail-body {
+      padding: 4px 10px;
+    }
+
+    .choices-wrap.level3-gmail .px-gmail-lbl {
+      font-size: 18px;
+    }
+
+    .choices-wrap.level3-gmail .px-gmail-val {
+      font-size: 30px;
+    }
+
+    .choices-wrap.level3-gmail .px-gmail-content {
+      font-size: 54px;
+      line-height: 1.35;
+    }
+
     .gmail-side-right .choice-grid {
       grid-template-columns: 1fr;
     }
@@ -2544,12 +2639,12 @@
     }
 
     .gmail-side-left {
-      flex: 1.7;
+      flex: 1.5;
       min-width: 0;
     }
 
     .gmail-side-right {
-      flex: 1;
+      flex: 1.1;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -2650,9 +2745,14 @@
     }
 
     .px-perm-opt.perm-viewer {
-      color: var(--gray);
-      border-color: var(--gray);
-      background: rgba(74, 96, 128, 0.1);
+      color: #ffd54a;
+      border-color: #ffd54a;
+      background: rgba(255, 213, 74, 0.18);
+    }
+
+    .px-perm-opt.perm-viewer:hover {
+      color: #ffea70;
+      border-color: #ffea70;
     }
 
     .px-perm-opt.perm-noaccess {
@@ -3023,14 +3123,14 @@
     }
 
     .px-folder-label {
-      font-size: 13px;
+      font-size: 16px;
       color: var(--white);
       letter-spacing: 0.5px;
       line-height: 1.2;
     }
 
     .px-folder-emoji {
-      font-size: 24px;
+      font-size: 28px;
     }
 
     .px-folder-hint {
@@ -3043,14 +3143,14 @@
 
     .px-folder-hint-title {
       font-family: var(--px);
-      font-size: 12px;
+      font-size: 14px;
       color: var(--yellow);
       margin-bottom: 6px;
     }
 
     .px-folder-hint-text {
       font-family: var(--vt);
-      font-size: 12px;
+      font-size: 14px;
       color: var(--white);
       line-height: 1.4;
     }
@@ -3067,9 +3167,9 @@
       background: rgba(255, 255, 255, 0.06);
       border: 2px solid var(--gray);
       border-radius: 4px;
-      padding: 8px 12px;
+      padding: 10px 14px;
       font-family: var(--vt);
-      font-size: 16px;
+      font-size: 18px;
       color: var(--white);
       cursor: pointer;
       transition: all 0.15s;
@@ -3649,14 +3749,21 @@
             gap: 4px;
             align-items: flex-start;
           ">
-        <button class="px-btn mg" id="btn-map-back" style="
-              padding: 6px 14px;
-              font-size: 10px;
-              border-width: 2px;
-              margin-bottom: 2px;
-            " onclick="goto('scr-title')">
-          BACK
-        </button>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+          <button class="px-btn mg" id="btn-map-back" style="
+                padding: 6px 14px;
+                font-size: 10px;
+                border-width: 2px;
+              " onclick="goto('scr-title')">
+            BACK
+          </button>
+          <div style="display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 4px 10px; border: 2px solid var(--green); border-radius: 4px; box-shadow: 4px 4px 0 rgba(0,0,0,0.6);">
+            <span class="vol-icon" style="font-size: 14px; color: var(--green);">🔊</span>
+            <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" 
+                   style="width: 80px; cursor: pointer; accent-color: var(--green); margin: 0;"
+                   oninput="adjustVolume(this.value)">
+          </div>
+        </div>
         <div class="hud-team" id="map-team">TEAM ---</div>
       </div>
       <div class="hud-xp-wrap">
@@ -3720,6 +3827,12 @@
             onclick="startLevel(GS.currentLevel)">
             RESTART
           </button>
+          <div style="display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 4px 10px; border: 2px solid var(--green); border-radius: 4px; box-shadow: 4px 4px 0 rgba(0,0,0,0.6);">
+            <span class="vol-icon" style="font-size: 14px; color: var(--green);">🔊</span>
+            <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" 
+                   style="width: 80px; cursor: pointer; accent-color: var(--green); margin: 0;"
+                   oninput="adjustVolume(this.value)">
+          </div>
         </div>
       </div>
       <div class="bhud-c">
@@ -3790,7 +3903,7 @@
         <div class="lv-name" id="lv-name">The Messy Desktop</div>
         <div class="lv-enemy" id="lv-enemy">vs CHAOS DESKTOP</div>
       </div>
-      <div class="b-feedback" id="b-feedback"></div>
+      <div class="b-feedback" id="b-feedback" style="display: none; flex-direction: column; align-items: center; gap: 10px;"></div>
     </div>
     <div class="battle-bottom">
       <div class="dialog-row">
@@ -3811,13 +3924,12 @@
       <div class="choices-wrap" id="choices-wrap"></div>
     </div>
     <div class="lvl-instruction-overlay" id="lvl-instruction-overlay">
-      <div class="inst-header" id="inst-header">LEVEL INSTRUCTION</div>
-      <div class="inst-body" id="inst-body"></div>
-      <div class="inst-footer">
-        MISSION STARTS IN <span id="inst-countdown">10</span>...
-        <div style="margin-top: 12px">
-          <button class="px-btn cy" id="inst-skip" style="font-size: 8px; padding: 6px 12px; border-width: 2px">
-            SKIP [SPACE]
+      <div class="inst-panel">
+        <div class="inst-header" id="inst-header">LEVEL INSTRUCTION</div>
+        <div class="inst-body" id="inst-body"></div>
+        <div class="inst-footer">
+          <button class="px-btn ye" id="inst-start" style="padding: 12px 24px; font-size: 12px;">
+            START MISSION
           </button>
         </div>
       </div>
@@ -3983,6 +4095,9 @@
     // ══════════════════════════════════════════════════════
     //  CONSTANTS & CONFIG
     // ══════════════════════════════════════════════════════
+    // Global sound state
+    let masterVolume = 0.5; // Default volume
+    let isSoundOn = true; // Default state
     const LB_KEY = "ctWW_v4";
     const SESSION_KEY = "ctWW_session_v4";
     const LANG_KEY = "ctWW_lang_v4";
@@ -4024,13 +4139,14 @@
         clSent: "Sent",
         instHeader: "LEVEL INSTRUCTION",
         instSkip: "SKIP [SPACE]",
-        instLvl1: "Help Ben name his homework! Choose the name that shows his Name and Subject. This helps Teacher Maria check his work easily!",
-        instLvl2: "Speed Round! Look at the file names quickly. Choose GOOD if the name is clear. Choose BAD if it is messy or has no name!",
-        instLvl3: "Help Ben write an email! A good Subject Line tells Teacher Maria who you are and what you are passing. Be polite!",
-        instLvl4: "Ben is passing his homework through email. Choose the correct file to attach before clicking SEND! Don't send an empty email!",
-        instLvl5: "Help Ben arrange his files! Look at the file shown and click the correct folder. Math goes in Math, Science to Science, English to English, and AP to AP!",
-        instLvl6: "Check who can see Ben's files! Set the right access for each person. Editors can help, Viewers can only see. Strangers get NO ACCESS!",
-        instLvl7: "Be a polite student! Read the messages and choose GOOD if they are respectful. Choose BAD if they are rude or use text slang!",
+        btnStartMission: "START MISSION",
+        instLvl1: "Help Ben name his homework! Choose the name that shows his Name and Subject. This helps Teacher Maria check his work easily!\n\nEXAMPLES:\n✅ Cruz_English_Essay.docx (Clear Name + Subject)\n❌ homework.docx (Who owns this?)\n❌ asdfgh.docx (No Subject!)",
+        instLvl2: "Speed Round! Look at the file names quickly. Choose GOOD if the name is clear. Choose BAD if it is messy or has no name!\n\nEXAMPLES:\n✅ Cruz_History_Essay.docx (Clear Name + Subject)\n❌ document1.pdf (No Name!)\n❌ qwertytrewq.docx (No Subject!)",
+        instLvl3: "Help Ben write an email! A good Subject Line tells Teacher Maria who you are and what you are passing. Be polite!\n\nEXAMPLES:\n✅ Filipino Project - Ben Dela Cruz - Grade 4 (Clear Name + Subject + Grade)\n❌ Hi po (Vague!)\n❌ Project (Which project?)",
+        instLvl4: "Ben is passing his homework through email. Choose the correct file to attach before clicking SEND! Don't send an empty email!\n\nQUESTION: If Ben's email is about a Science Report, which file should he pick?\n\nEXAMPLES:\n✅ Ben_Science_Report.docx (Matches the subject)\n❌ math_homework.docx (Wrong subject!)\n❌ vacation_photo.jpg (Not a report!)",
+        instLvl5: "Help Ben arrange his files! Look at the file shown and click the correct folder. For example, 'Layers_of_Earth.png' goes into the Science folder, not Math!\n\nQUESTION: If Ben has a 'Algebra_Equations.docx' file, which folder should it go into?\n\nEXAMPLES:\n✅ Algebra_Equations.docx -> Math Folder (Correct subject topic)\n❌ Algebra_Equations.docx -> English Folder (Wrong subject!)",
+        instLvl6: "Check who can see Ben's files! Set the right access for each person.\n\nQUESTION: If Ben wants his teacher to check his work but not change it, what access should he give?\n\nEXAMPLES:\n✅ Teacher Maria -> Viewer (Can read/check only)\n✅ Seatmate Sarah -> Editor (Helping with the project)\n❌ Stranger -> No Access (Safety first!)",
+        instLvl7: "Be a polite student! Read the messages and choose GOOD if they are respectful. Choose BAD if they are rude or use text slang!\n\nQUESTION: If you are asking your teacher for help, which message is the most professional?\n\nEXAMPLES:\n✅ Good morning Teacher Maria. May I ask for help with the lesson? (Polite and clear)\n❌ hey maam help me (Too casual!)\n❌ ASAP!!!! (Rude and demanding!)",
         instLvl8: "The Final Boss! Use everything you learned to help Ben finish all his tasks before the deadline! Good luck, Digital Defender!",
         leaderboardTitle: "LEADERBOARD",
         leaderboardSub: "Top Teams",
@@ -4141,13 +4257,14 @@
         clSent: "Ipinadala",
         instHeader: "TAGUBILING LEVEL",
         instSkip: "LUMAMPAS [SPACE]",
-        instLvl1: "Tulungan si Ben na pangalanan ang kanyang homework! Piliin ang pangalan na nagpapakita ng kanyang Pangalan at Paksa. Makakatulong ito kay Binibining Maria na madaling ma-check ang kanyang gawa!",
-        instLvl2: "Speed Round! Tingnan nang mabilis ang mga pangalan ng file. Piliin ang TAMA kung malinaw ang pangalan. Piliin ang MALI kung magulo ito o walang pangalan!",
-        instLvl3: "Tulungan si Ben na magsulat ng email! Ang mabuting Subject Line ay nagsasabi kay Binibining Maria kung sino ka at ano ang iyong ipinapasa. Maging magalang!",
-        instLvl4: "Ipinapasa ni Ben ang kanyang homework sa pamamagitan ng email. Piliin ang tamang file na i-attach bago pindutin ang SEND! Huwag magpadala ng walang lamang email!",
-        instLvl5: "Tulungan si Ben na ayusin ang kanyang mga file! Tingnan ang file na ipinapakita at i-click ang tamang folder. Ang Math ay sa Math, Science sa Science, English sa English, at AP sa AP!",
-        instLvl6: "Tingnan kung sino ang makakakita sa mga file ni Ben! Itakda ang tamang access para sa bawat tao. Ang mga Editor ay pwedeng tumulong, ang mga Viewer ay makakakita lang. Ang mga hindi kilala ay WALANG ACCESS!",
-        instLvl7: "Maging isang magalang na estudyante! Basahin ang mga mensahe at piliin ang TAMA kung ito ay magalang. Piliin ang MALI kung ito ay bastos o gumagamit ng text slang!",
+        btnStartMission: "SIMULANG MISYON",
+        instLvl1: "Tulungan si Ben na pangalanan ang kanyang homework! Piliin ang pangalan na nagpapakita ng kanyang Pangalan at Paksa. Makakatulong ito kay Binibining Maria na madaling ma-check ang kanyang gawa!\n\nMGA HALIMBAWA:\n✅ Sarah_English_Essay.docx (Malinaw na Pangalan + Paksa)\n❌ homework.docx (Kanino ito?)\n❌ asdfgh.docx (Walang Paksa!)",
+        instLvl2: "Speed Round! Tingnan nang mabilis ang mga pangalan ng file. Piliin ang TAMA kung malinaw ang pangalan. Piliin ang MALI kung magulo ito o walang pangalan!\n\nMGA HALIMBAWA:\n✅ Cruz_History_Essay.docx (May Pangalan + Paksa)\n❌ document1.pdf (Walang Pangalan!)\n❌ qwertytrewq.docx (Walang Paksa!)",
+        instLvl3: "Tulungan si Ben na magsulat ng email! Ang mabuting Subject Line ay nagsasabi kay Binibining Maria kung sino ka at ano ang iyong ipinapasa. Maging magalang!\n\nMGA HALIMBAWA:\n✅ Proyekto sa Filipino - Maria Santos - Grade 4 (Malinaw na Paksa + Pangalan + Baitang)\n❌ Hi po (Masyadong maikli!)\n❌ Proyekto (Anong proyekto ito?)",
+        instLvl4: "Ipinapasa ni Ben ang kanyang homework sa pamamagitan ng email. Piliin ang tamang file na i-attach bago pindutin ang SEND! Huwag magpadala ng walang lamang email!\n\nTANONG: Kung ang email ni Ben ay tungkol sa Science Report, aling file ang dapat niyang piliin?\n\nMGA HALIMBAWA:\n✅ Ben_Science_Report.docx (Tugma sa paksa)\n❌ math_homework.docx (Maling paksa!)\n❌ bakasyon.jpg (Hindi report!)",
+        instLvl5: "Tulungan si Ben na ayusin ang kanyang mga file! Tingnan ang file na ipinapakita at i-click ang tamang folder. Halimbawa, ang 'Layers_of_Earth.png' ay sa Science folder, hindi sa Math!\n\nTANONG: Kung may 'Algebra_Equations.docx' file si Ben, saang folder ito dapat ilagay?\n\nMGA HALIMBAWA:\n✅ Algebra_Equations.docx -> Math Folder (Tamang paksa)\n❌ Algebra_Equations.docx -> English Folder (Maling paksa!)",
+        instLvl6: "Tingnan kung sino ang makakakita sa mga file ni Ben! Itakda ang tamang access para sa bawat tao.\n\nTANONG: Kung gusto ni Ben na makita ng guro ang kanyang gawa pero hindi ito mababago, anong access ang dapat niyang ibigay?\n\nMGA HALIMBAWA:\n✅ Teacher Maria -> Viewer (Makakabasa/check lang)\n✅ Seatmate Sarah -> Editor (Tumutulong sa proyekto)\n❌ Stranger -> No Access (Ligtas dapat!)",
+        instLvl7: "Maging isang magalang na estudyante! Basahin ang mga mensahe at piliin ang TAMA kung ito ay magalang. Piliin ang MALI kung ito ay bastos o gumagamit ng text slang!\n\nTANONG: Kung hihingi ka ng tulong sa iyong guro, aling mensahe ang pinaka-propesyonal?\n\nMGA HALIMBAWA:\n✅ Magandang umaga po Binibining Maria. Maaari po bang humingi ng tulong sa ating aralin? (Magalang at malinaw)\n❌ hey maam tulong (Masyadong casual!)\n❌ ASAP!!!! (Bastos at nagmamadali!)",
         instLvl8: "Ang Final Boss! Gamitin ang lahat ng iyong natutunan para tulungan si Ben na matapos ang lahat ng kanyang mga gawain bago ang deadline! Good luck, Digital Defender!",
         leaderboardTitle: "TABLERO",
         leaderboardSub: "Nangungunang Mga Koponan",
@@ -4539,15 +4656,18 @@
       const cw = document.getElementById("countdownWarning");
 
       if (GS.isPaused) {
-        if (bMusic && !bMusic.paused) bMusic.pause();
-        if (bossMusic && !bossMusic.paused) bossMusic.pause();
-        if (cw && !cw.paused) cw.pause();
+        if (bMusic) bMusic.pause();
+        if (bossMusic) bossMusic.pause();
+        if (cw) cw.pause();
       } else {
-        const lvl = getShuffledLevel(GS.currentLevel);
-        if (lvl.id < 8) {
-          if (bMusic) bMusic.play().catch(() => { });
-        } else {
-          if (bossMusic) bossMusic.play().catch(() => { });
+        // Only play if sound is globally enabled
+        if (isSoundOn) {
+          const lvl = getShuffledLevel(GS.currentLevel);
+          if (lvl.id < 8) {
+            if (bMusic) bMusic.play().catch(() => { });
+          } else {
+            if (bossMusic) bossMusic.play().catch(() => { });
+          }
         }
       }
     }
@@ -4575,7 +4695,7 @@
         ["name-hint", "nameHint"],
         ["cl-header", "clHeader"],
         ["inst-header", "instHeader"],
-        ["inst-skip", "instSkip"],
+        ["inst-start", "btnStartMission"],
         ["cert-heading-main", "certHeadingMain"],
         ["cert-heading-sub", "certHeadingSub"],
         ["cert-role", "certRole"],
@@ -4599,8 +4719,6 @@
       // Update dynamic Battle HUD and Instructions
       if (document.getElementById("scr-battle").classList.contains("active")) {
         const lvl = getShuffledLevel(GS.currentLevel);
-        const bhLevel = document.getElementById("bhud-level");
-        if (bhLevel) bhLevel.textContent = t(lvl.title);
         const bhLname = document.getElementById("bhud-lname");
         if (bhLname) bhLname.textContent = t(lvl.name);
         const eName = document.getElementById("enemy-name");
@@ -4834,6 +4952,38 @@
       );
       // Music handled by goto()
       setTimeout(() => initMap(), 350);
+    }
+
+    function adjustVolume(val) {
+      masterVolume = parseFloat(val);
+      isSoundOn = masterVolume > 0;
+
+      document.querySelectorAll(".vol-icon").forEach(icon => {
+        icon.textContent = masterVolume === 0 ? "🔇" : "🔊";
+      });
+      document.querySelectorAll(".volume-slider").forEach(slider => {
+        slider.value = masterVolume;
+      });
+
+      const allAudio = document.querySelectorAll("audio");
+      allAudio.forEach(audio => {
+        audio.volume = masterVolume;
+        
+        // If volume was 0 and is now > 0, we might need to resume if it was paused to save resources
+        if (!isSoundOn && !audio.paused) {
+          audio.__wasPlayingBeforeMute = !audio.paused;
+          audio.pause();
+        } else if (isSoundOn && audio.__wasPlayingBeforeMute && audio.paused) {
+          audio.play().catch(() => {});
+          audio.__wasPlayingBeforeMute = false;
+        }
+      });
+
+      localStorage.setItem("gameMasterVolume", masterVolume);
+      localStorage.setItem("gameSoundOn", isSoundOn);
+      
+      // Refresh music state based on current screen
+      if (typeof updateAudioState === "function") updateAudioState();
     }
 
     function checkSession() {
@@ -5093,13 +5243,12 @@
         weakKey: "email",
         uiType: "gmail-subject",
         toField: "maam.maria@school.ph",
-        bodyPreview:
-          "Good afternoon po Teacher, here is my assignment for submission...",
         questions: [
           {
             dialog:
               "Which SUBJECT LINE is the most clear for Teacher Maria? Be polite!",
             tag: "KuyaBen",
+            bodyPreview: "Good afternoon po Teacher Maria. Attached is my Math homework. Thank you!",
             choices: [
               { text: "hey", xp: -5 },
               { text: "(no subject)", xp: -5 },
@@ -5121,6 +5270,7 @@
             dialog:
               "Ben is passing his work LATE. Which subject line is the best to tell Teacher?",
             tag: "KuyaBen",
+            bodyPreview: "Sorry po Teacher Maria, my Science homework is late. Here it is po.",
             choices: [
               { text: "sorry", xp: -5 },
               {
@@ -5142,6 +5292,7 @@
             dialog:
               "This is a PANGKAT project. Which subject line is best for the whole group?",
             tag: "System",
+            bodyPreview: "Hello po Teacher Maria. Here is the Science Project of Pangkat 3. Thank you po!",
             choices: [
               { text: "group project", xp: -5 },
               { text: "GROUP SCIENCE PROJECT FINAL FINAL", xp: -5 },
@@ -5163,6 +5314,7 @@
             dialog:
               "Teacher Maria asked a question and Ben wants to reply. Which subject is best for REPLIES?",
             tag: "TeacherMaria",
+            bodyPreview: "Re: Math Homework. Yes po Teacher, I will check the corrections. Thank you!",
             choices: [
               {
                 text: "Re: Math Homework - Ben Dela Cruz - Grade 4",
@@ -5236,16 +5388,16 @@
         uiType: "folders",
         timeLimit: 70,
         files: [
-          { name: "Math_HW.docx", folder: "Math" },
-          { name: "Science_Drawing.png", folder: "Science" },
-          { name: "English_Poem.docx", folder: "English" },
-          { name: "AP_Assignment.txt", folder: "AP" },
-          { name: "Math_Quiz.xlsx", folder: "Math" },
-          { name: "Science_Notes.png", folder: "Science" },
-          { name: "English_Essay.docx", folder: "English" },
-          { name: "AP_Notes.txt", folder: "AP" },
-          { name: "Math_Practice.docx", folder: "Math" },
-          { name: "Science_Lab.docx", folder: "Science" },
+          { name: "Algebra_Equations.docx", folder: "Math" },
+          { name: "Layers_of_Earth.png", folder: "Science" },
+          { name: "Shakespeare_Sonnet.txt", folder: "English" },
+          { name: "Philippine_History_Timeline.pptx", folder: "AP" },
+          { name: "Geometry_Shapes.pptx", folder: "Math" },
+          { name: "Photosynthesis_Diagram.jpg", folder: "Science" },
+          { name: "Grammar_Rules.docx", folder: "English" },
+          { name: "Philippine_Heroes_Project.pptx", folder: "AP" },
+          { name: "Calculus_Limits.pdf", folder: "Math" },
+          { name: "Periodic_Table_Elements.pdf", folder: "Science" },
         ],
         folders: ["Math", "Science", "English", "AP"],
       },
@@ -5507,7 +5659,7 @@
             title: "STEP 5: FOLDER SORT",
             uiType: "folders",
             dialog: "Organize this file into the correct folder!",
-            file: { name: "AP_Notes.txt", folder: "AP" },
+            file: { name: "Philippine_Heroes_Project.pptx", folder: "AP" },
             folders: ["Math", "Science", "English", "AP"],
             tag: "SYS",
           },
@@ -6102,12 +6254,16 @@
     }
 
     function fadeAudio(audio, targetVolume, duration = 600, onComplete) {
-      if (!audio) return;
+      if (!audio) {
+        if (onComplete) onComplete();
+        return;
+      }
       clearInterval(audio.__fadeInterval);
       const start = audio.volume;
-      const delta = targetVolume - start;
+      const actualTargetVolume = isSoundOn ? targetVolume : 0; // If sound is off, target volume is always 0
+      const delta = actualTargetVolume - start;
       if (duration <= 0) {
-        audio.volume = targetVolume;
+        audio.volume = actualTargetVolume;
         if (onComplete) onComplete();
         return;
       }
@@ -6129,26 +6285,28 @@
     }
 
     function playIntroMusic() {
+      stopBattleMusic();
+      stopBossMusic();
       const m = document.getElementById("introMusic");
       introMusicEnabled = true;
-      if (!m) return;
+      if (!m || !isSoundOn) return; // Only play if sound is on
       if (m.paused) {
         m.volume = 0;
         m.currentTime = 0;
         m.play().catch(() => { });
-        fadeAudio(m, 1, 600);
+        fadeAudio(m, masterVolume, 600); // Fade to masterVolume
       } else {
-        fadeAudio(m, 1, 600);
+        fadeAudio(m, masterVolume, 600); // Fade to masterVolume
       }
     }
 
     function stopIntroMusic() {
       const m = document.getElementById("introMusic");
-      if (!m || m.paused) return;
-      fadeAudio(m, 0, 600, () => {
-        m.pause();
-        m.currentTime = 0;
-      });
+      if (!m) return;
+      clearInterval(m.__fadeInterval);
+      m.pause();
+      m.currentTime = 0;
+      m.volume = 0;
     }
 
     function confirmName() {
@@ -6323,10 +6481,17 @@
       }
       if (nearNode >= 0 && mapDlgState.nodeIdx !== nearNode) {
         const nearLevel = getShuffledLevel(nearNode);
-        showMapDialog(
-          `LV.${nearNode + 1}: ${nearLevel.name}\n[ENTER/Z] — Enter battle!`,
-          nearNode,
-        );
+        if (nearNode > GS.unlockedLevel) {
+          showMapDialog(
+            `LV.${nearNode + 1}: LOCKED\nFinish Level ${nearNode} before this!`,
+            nearNode
+          );
+        } else {
+          showMapDialog(
+            `LV.${nearNode + 1}: ${nearLevel.name}\n[ENTER/Z] — Enter battle!`,
+            nearNode,
+          );
+        }
       } else if (nearNode < 0 && mapDlgState.active) {
         hideMapDialog();
       }
@@ -6801,6 +6966,7 @@
       currentLang = "en";
       applyLanguage();
       hideMapDialog();
+      stopIntroMusic();
       if (mapAnim) {
         cancelAnimationFrame(mapAnim);
         mapAnim = null;
@@ -6838,7 +7004,7 @@
             };
             if (source.uiType === "gmail-subject") {
               step.toField = source.toField;
-              step.bodyPreview = source.bodyPreview;
+              step.bodyPreview = q.bodyPreview;
             }
           } else if (source.uiType === "goodbad") {
             step = {
@@ -6907,15 +7073,36 @@
         bossLvl.steps = shuffleArray(bossLvl.steps);
       }
 
-      // Apply big panel sizing to Level 2 through 8 (indexes 1 to 7)
+      // Expand the question/answer area for the larger panel levels, including Level 8
       const arena = document.getElementById("battle-arena");
       const bottom = document.querySelector(".battle-bottom");
-      if (idx >= 1 && idx <= 7) {
+      const shouldUseBigPanel = [2, 3, 7].includes(idx);
+      if (shouldUseBigPanel) {
         arena.classList.add("small-arena-top");
         bottom.classList.add("big-panel-bottom");
+        if (idx === 3) {
+          arena.classList.add("level4-battle-layout");
+          bottom.classList.add("level4-battle-layout");
+          arena.classList.remove("level3-battle-layout");
+          bottom.classList.remove("level3-battle-layout");
+        } else if (idx === 2) {
+          arena.classList.add("level3-battle-layout");
+          bottom.classList.add("level3-battle-layout");
+          arena.classList.remove("level4-battle-layout");
+          bottom.classList.remove("level4-battle-layout");
+        } else {
+          arena.classList.remove("level4-battle-layout");
+          bottom.classList.remove("level4-battle-layout");
+          arena.classList.remove("level3-battle-layout");
+          bottom.classList.remove("level3-battle-layout");
+        }
       } else {
         arena.classList.remove("small-arena-top");
         bottom.classList.remove("big-panel-bottom");
+        arena.classList.remove("level4-battle-layout");
+        bottom.classList.remove("level4-battle-layout");
+        arena.classList.remove("level3-battle-layout");
+        bottom.classList.remove("level3-battle-layout");
       }
 
       const lvl = getShuffledLevel(idx);
@@ -6952,7 +7139,6 @@
         stepIndicator.textContent = "";
       }
 
-      document.getElementById("bhud-level").textContent = t(lvl.title);
       document.getElementById("bhud-lname").textContent = t(lvl.name);
       document.getElementById("enemy-name").textContent = t(lvl.enemy);
       document.getElementById("bhud-team").textContent = GS.teamName;
@@ -6971,8 +7157,17 @@
       updateEnemyHP(100);
       document.getElementById("b-checklist").style.display = "none";
       // Clear previous level's question/choices so they don't bleed into the new level
-      document.getElementById("choices-wrap").innerHTML = "";
-      document.getElementById("choices-wrap").className = "choices-wrap";
+      const choicesWrap = document.getElementById("choices-wrap");
+      const battleBottom = document.querySelector(".battle-bottom");
+      if (choicesWrap) {
+        choicesWrap.innerHTML = "";
+        choicesWrap.className = "choices-wrap";
+        choicesWrap.style.opacity = "0";
+        choicesWrap.style.visibility = "hidden";
+      }
+      if (battleBottom) {
+        battleBottom.style.opacity = "0";
+      }
       document.getElementById("dialog-text").textContent = "";
       goto("scr-battle", `ENTERING ${lvl.title}...`, lvl.name);
       setTimeout(() => {
@@ -6998,42 +7193,28 @@
       "instLvl8",
     ];
 
-    let instTimer = null;
     function showLevelInstruction(idx, done) {
       const overlay = document.getElementById("lvl-instruction-overlay");
       const body = document.getElementById("inst-body");
-      const countdown = document.getElementById("inst-countdown");
-      const skipBtn = document.getElementById("inst-skip");
+      const startBtn = document.getElementById("inst-start");
 
       body.textContent = t(LVL_INSTRUCTIONS[idx]);
       overlay.classList.add("show");
 
-      let seconds = 10;
-      countdown.textContent = seconds;
-
       const finish = () => {
-        if (GS.isPaused) return;
-        clearInterval(instTimer);
         overlay.classList.remove("show");
         window.removeEventListener("keydown", handleInstKey);
         done();
       };
 
       const handleInstKey = (e) => {
-        if (e.code === "Space") {
+        if (e.code === "Space" || e.code === "Enter") {
           e.preventDefault();
           finish();
         }
       };
       window.addEventListener("keydown", handleInstKey);
-      skipBtn.onclick = finish;
-
-      instTimer = setInterval(() => {
-        if (GS.isPaused) return;
-        seconds--;
-        countdown.textContent = seconds;
-        if (seconds <= 0) finish();
-      }, 1000);
+      startBtn.onclick = finish;
     }
 
     function showLevelBanner(title, name, enemy, done) {
@@ -7050,6 +7231,16 @@
 
     // ── LEVEL RUNNER ──
     function runLevel(idx) {
+      const choicesWrap = document.getElementById("choices-wrap");
+      const battleBottom = document.querySelector(".battle-bottom");
+      if (choicesWrap) {
+        choicesWrap.style.opacity = "1";
+        choicesWrap.style.visibility = "visible";
+      }
+      if (battleBottom) {
+        battleBottom.style.opacity = "1";
+      }
+
       const lvl = getShuffledLevel(idx);
       switch (lvl.uiType) {
         case "choice":
@@ -7088,7 +7279,12 @@
           return;
         }
         const q = qs[qIdx];
+        const updateRound = () => {
+          document.getElementById("bhud-level").textContent = "Round " + (qIdx + 1) + "/" + qs.length;
+        };
+        updateRound();
         GS.currentBattleRefresh = () => {
+          updateRound();
           const btns = document.querySelectorAll("#choice-grid .choice-btn");
           q.choices.forEach((c, i) => {
             const btn = btns[i];
@@ -7124,6 +7320,13 @@
         const xp = choiceObj ? (choiceObj.xp || -5) : -5;
         const correct = xp > 0;
         highlightChoices(choiceObj, q.choices);
+        
+        const proceed = () => {
+          hideFeedback();
+          GS.inputLocked = false;
+          next();
+        };
+
         if (correct) {
           GS.xp += xp * 10;
           GS.correctCount++;
@@ -7133,27 +7336,19 @@
           damageEnemy(22 + Math.min(28, xp));
           spawnXP(`+${xp * 10}XP`, true);
           showFeedback(t(q.feedback?.correct || "Correct!"), true);
+          setTimeout(proceed, 2100);
         } else {
           GS.xp = Math.max(0, GS.xp + xp * 10);
           GS.wrongCount++;
           GS.streak = 0;
-          GS.weaknessTracker[lvl.weakKey] =
-            (GS.weaknessTracker[lvl.weakKey] || 0) + 1;
+          GS.weaknessTracker[lvl.weakKey] = (GS.weaknessTracker[lvl.weakKey] || 0) + 1;
           spawnEnemyAttack();
           shakeArena();
           spawnXP(`${xp * 10}XP`, false);
-          showFeedback(
-            t(q.feedback?.wrong || "Wrong! Try again next time!"),
-            false,
-          );
+          showFeedback(t(q.feedback?.wrong || "Wrong! Try again next time!"), false, proceed);
         }
         updateXP();
         updateStreak();
-        setTimeout(() => {
-          hideFeedback();
-          GS.inputLocked = false;
-          next();
-        }, correct ? 2100 : 4500);
       }
 
       // Override renderChoices to bind to handleChoice
@@ -7196,6 +7391,10 @@
           return;
         }
         item = items[iIdx];
+        const updateRound = () => {
+          document.getElementById("bhud-level").textContent = "Round " + (iIdx + 1) + "/" + items.length;
+        };
+        updateRound();
         const wrap = document.getElementById("choices-wrap");
 
         const isLvl2 = idx === 1;
@@ -7245,6 +7444,7 @@
         );
         GS.currentBattleRefresh = () => {
           const wrap = document.getElementById("choices-wrap");
+          updateRound();
           if (!wrap) return;
           const docName = wrap.querySelector(".docs-preview .doc-name");
           if (docName)
@@ -7271,65 +7471,40 @@
           const b = document.getElementById(id);
           if (b) b.disabled = true;
         });
-        if (answer === null) {
-          GS.wrongCount++;
-          GS.xp = Math.max(0, GS.xp - 100);
-          levelXP -= 5;
-          streak = 0;
-          GS.weaknessTracker[lvl.weakKey] =
-            (GS.weaknessTracker[lvl.weakKey] || 0) + 1;
-          shakeArena();
-          spawnXP("-100XP", false);
-          showFeedback(t("Time up! -100XP"), false);
-        } else {
-          const correct = answer === item.good;
-          if (correct) {
-            GS.correctCount++;
-            GS.xp += 100;
-            levelXP += 10;
-            streak++;
-            if (streak > GS.maxStreak) GS.maxStreak = streak;
-            if (streak >= 5) {
-              GS.xp += 100;
-              levelXP += 10;
-              spawnXP("+200XP +STREAK!", true);
-            } else {
-              spawnXP("+100XP", true);
-            }
-            spawnFireball();
-            damageEnemy(14);
-            showFeedback(
-              (item.good
-                ? "✓ " + t("GOOD NAME!")
-                : "✓ " + t("BAD NAME — Correct!")) + " +100XP",
-              true,
-            );
-          } else {
-            GS.wrongCount++;
-            GS.xp = Math.max(0, GS.xp - 50);
-            levelXP -= 5;
-            streak = 0;
-            GS.weaknessTracker[lvl.weakKey] =
-              (GS.weaknessTracker[lvl.weakKey] || 0) + 1;
-            spawnEnemyAttack();
-            shakeArena();
-            spawnXP("-50XP", false);
-            showFeedback(
-              item.explain ||
-              (item.good ? "This IS a good name!" : "This IS a bad name!"),
-              false,
-            );
-          }
-        }
-        updateXP();
-        updateStreak();
-        const isCorrect = answer !== null && answer === item.good;
-        setTimeout(() => {
+
+        const proceed = () => {
           hideFeedback();
           GS.inputLocked = false;
           iIdx++;
           doItem();
-        }, isCorrect ? 1800 : 4500);
+        };
+
+        if (answer === null) {
+          GS.wrongCount++;
+          GS.xp = Math.max(0, GS.xp - 50);
+          levelXP -= 5; streak = 0;
+          GS.weaknessTracker[lvl.weakKey] = (GS.weaknessTracker[lvl.weakKey] || 0) + 1;
+          shakeArena();
+          spawnXP("-50XP", false);
+          showFeedback(t("Time up! -50XP"), false, proceed);
+        } else {
+          const correct = answer === item.good;
+          if (correct) {
+            GS.correctCount++; GS.xp += 100; levelXP += 10;
+            streak++; if (streak > GS.maxStreak) GS.maxStreak = streak;
+            if (streak >= 5) { GS.xp += 100; levelXP += 10; spawnXP("+200XP +STREAK!", true); } else { spawnXP("+100XP", true); }
+            spawnFireball(); damageEnemy(14);
+            showFeedback((item.good ? "✓ " + t("GOOD NAME!") : "✓ " + t("BAD NAME — Correct!")) + " +100XP", true);
+            setTimeout(proceed, 1800);
+          } else {
+            GS.wrongCount++; GS.xp = Math.max(0, GS.xp - 50); levelXP -= 5; streak = 0;
+            GS.weaknessTracker[lvl.weakKey] = (GS.weaknessTracker[lvl.weakKey] || 0) + 1;
+            spawnEnemyAttack(); shakeArena(); spawnXP("-50XP", false);
+            showFeedback(item.explain || (item.good ? "This IS a good name!" : "This IS a bad name!"), false, proceed);
+          }
+        }
+        updateXP();
+        updateStreak();
       };
       doItem();
     }
@@ -7346,8 +7521,12 @@
           return;
         }
         const q = qs[qIdx];
+        const updateRound = () => {
+          document.getElementById("bhud-level").textContent = "Round " + (qIdx + 1) + "/" + qs.length;
+        };
+        updateRound();
         const wrap = document.getElementById("choices-wrap");
-        wrap.classList.add("gmail-layout");
+        wrap.className = "choices-wrap gmail-layout level3-gmail";
         wrap.innerHTML = `
     <div class="gmail-side-left">
       <div class="px-gmail-wrap white-theme" style="margin-bottom:6px;">
@@ -7358,7 +7537,7 @@
         <div class="px-gmail-body" style="padding:4px 10px;">
           <div class="px-gmail-field"><div class="px-gmail-lbl">${t("gmailToLabel")}</div><div class="px-gmail-val">${lvl.toField}</div></div>
           <div class="px-gmail-field"><div class="px-gmail-lbl">${t("gmailSubjectLabel")}</div><div class="px-gmail-val" id="subject-preview" style="color:#ff2244 !important;font-style:italic;">??? (choose below)</div></div>
-          <div class="px-gmail-content" style="font-size:20px;">${t(lvl.bodyPreview)}</div>
+          <div class="px-gmail-content" style="font-size:32px; line-height:1.35;">${t(q.bodyPreview)}</div>
         </div>
       </div>
     </div>
@@ -7375,12 +7554,23 @@
           btn.addEventListener("click", () => handleSC(c, q));
           grid.appendChild(btn);
         });
+        
+        // Sync Gmail mockup height to the choices natural height
+        setTimeout(() => {
+          const gmailWrap = wrap.querySelector(".px-gmail-wrap");
+          const rightSide = wrap.querySelector(".gmail-side-right");
+          if (gmailWrap && rightSide) {
+            gmailWrap.style.height = `${rightSide.offsetHeight - 6}px`;
+          }
+        }, 50);
+
         setBattleDialog(q.dialog, {}, q.tag || "SYS");
         GS.currentBattleRefresh = () => {
+          updateRound();
           const wrap = document.getElementById("choices-wrap");
           if (!wrap) return;
           const body = wrap.querySelector(".px-gmail-content");
-          if (body) body.innerHTML = t(lvl.bodyPreview);
+          if (body) body.innerHTML = t(q.bodyPreview);
           const btns = wrap.querySelectorAll("#choice-grid .choice-btn");
           q.choices.forEach((c, i) => {
             const btn = btns[i];
@@ -7391,6 +7581,15 @@
           const subPrev = document.getElementById("subject-preview");
           if (subPrev && GS.inputLocked === false)
             subPrev.textContent = "??? (choose below)";
+
+          // Re-sync on language refresh
+          setTimeout(() => {
+            const gmailWrap = wrap.querySelector(".px-gmail-wrap");
+            const rightSide = wrap.querySelector(".gmail-side-right");
+            if (gmailWrap && rightSide) {
+              gmailWrap.style.height = `${rightSide.offsetHeight - 6}px`;
+            }
+          }, 50);
         };
         const timeForQ = 20;
         GS.inputLocked = false;
@@ -7407,39 +7606,29 @@
             const sp = document.getElementById("subject-preview");
             if (sp) sp.textContent = t(choice.text);
           }
-          highlightChoicesGeneric(
-            grid,
-            choice ? q.choices.indexOf(choice) : -1,
-            q.choices,
-          );
-          if (xp > 0) {
-            GS.xp += xp;
-            GS.correctCount++;
-            GS.streak++;
-            if (GS.streak > GS.maxStreak) GS.maxStreak = GS.streak;
-            spawnFireball();
-            damageEnemy(25);
-            spawnXP(`+${xp}XP`, true);
-            showFeedback(t(q.feedback.correct), true);
-          } else {
-            GS.xp = Math.max(0, GS.xp + xp);
-            GS.wrongCount++;
-            GS.streak = 0;
-            GS.weaknessTracker["email"] =
-              (GS.weaknessTracker["email"] || 0) + 1;
-            spawnEnemyAttack();
-            shakeArena();
-            spawnXP(`${xp}XP`, false);
-            showFeedback(t(q.feedback.wrong), false);
-          }
-          updateXP();
-          updateStreak();
-          setTimeout(() => {
+          highlightChoicesGeneric(grid, choice ? q.choices.indexOf(choice) : -1, q.choices);
+          
+          const proceed = () => {
             hideFeedback();
             GS.inputLocked = false;
             qIdx++;
             doQ();
-          }, xp > 0 ? 2100 : 4500);
+          };
+
+          if (xp > 0) {
+            GS.xp += xp; GS.correctCount++; GS.streak++;
+            if (GS.streak > GS.maxStreak) GS.maxStreak = GS.streak;
+            spawnFireball(); damageEnemy(25); spawnXP(`+${xp}XP`, true);
+            showFeedback(t(q.feedback.correct), true);
+            setTimeout(proceed, 2100);
+          } else {
+            GS.xp = Math.max(0, GS.xp + xp); GS.wrongCount++; GS.streak = 0;
+            GS.weaknessTracker["email"] = (GS.weaknessTracker["email"] || 0) + 1;
+            spawnEnemyAttack(); shakeArena(); spawnXP(`${xp}XP`, false);
+            showFeedback(t(q.feedback.wrong), false, proceed);
+          }
+          updateXP();
+          updateStreak();
         }
       }
       doQ();
@@ -7455,6 +7644,10 @@
     function renderGmailAttachQ(idx) {
       const lvl = getShuffledLevel(idx);
       const q = lvl.questions[GS.currentSubIdx];
+      const updateRound = () => {
+        document.getElementById("bhud-level").textContent = "Round " + (GS.currentSubIdx + 1) + "/" + lvl.questions.length;
+      };
+      updateRound();
       const wrap = document.getElementById("choices-wrap");
       wrap.classList.add("gmail-layout");
       document.getElementById("b-checklist").style.display = "block";
@@ -7495,6 +7688,7 @@
         "SYS",
       );
       GS.currentBattleRefresh = () => {
+        updateRound();
         const wrap = document.getElementById("choices-wrap");
         if (!wrap) return;
         const body = wrap.querySelector(".px-gmail-content");
@@ -7543,72 +7737,42 @@
       clearTimer();
       const lvl = getShuffledLevel(levelIdx);
       const q = lvl.questions[GS.currentSubIdx];
+
+      const proceed = () => {
+        hideFeedback();
+        GS.inputLocked = false;
+        GS.currentSubIdx++;
+        if (GS.currentSubIdx < lvl.questions.length) renderGmailAttachQ(levelIdx);
+        else endLevel(levelIdx);
+      };
+
       if (!GS.attachSelected) {
-        GS.wrongCount++;
-        GS.xp = Math.max(0, GS.xp - 2000);
+        GS.wrongCount++; GS.xp = Math.max(0, GS.xp - 200);
         GS.weaknessTracker["email"] = (GS.weaknessTracker["email"] || 0) + 1;
-        spawnEnemyAttack();
-        shakeArena();
-        spawnXP("-2000XP", false);
-        showFeedback(
-          t("You sent an EMPTY email! ALWAYS attach the file first! -2000XP"),
-          false,
-        );
+        spawnEnemyAttack(); shakeArena(); spawnXP("-200XP", false);
+        showFeedback(t("You sent an EMPTY email! ALWAYS attach the file first! -200XP"), false, proceed);
         updateChecklist("attach", false);
-        const sb = document.getElementById("send-btn");
-        if (sb) sb.disabled = true;
+        const sb = document.getElementById("send-btn"); if (sb) sb.disabled = true;
         updateXP();
-        setTimeout(() => {
-          hideFeedback();
-          GS.inputLocked = false;
-          GS.currentSubIdx++;
-          if (GS.currentSubIdx < lvl.questions.length)
-            renderGmailAttachQ(levelIdx);
-          else endLevel(levelIdx);
-        }, 4500);
         return;
       }
       updateChecklist("attach", true);
       const correct = GS.attachSelected === q.correctFile;
       if (correct) {
-        GS.xp += 250;
-        GS.correctCount++;
-        GS.streak++;
+        GS.xp += 250; GS.correctCount++; GS.streak++;
         if (GS.streak > GS.maxStreak) GS.maxStreak = GS.streak;
-        spawnFireball();
-        damageEnemy(Math.ceil(100 / lvl.questions.length));
-        spawnXP("+250XP", true);
-        showFeedback(
-          t(
-            "PERFECT! Correct file attached and email sent! Teacher Maria is happy!",
-          ),
-          true,
-        );
+        spawnFireball(); damageEnemy(Math.ceil(100 / lvl.questions.length)); spawnXP("+250XP", true);
+        showFeedback(t("PERFECT! Correct file attached and email sent! Teacher Maria is happy!"), true);
         updateChecklist("sent", true);
+        setTimeout(proceed, 2300);
       } else {
-        GS.xp = Math.max(0, GS.xp - 150);
-        GS.wrongCount++;
-        GS.streak = 0;
+        GS.xp = Math.max(0, GS.xp - 100); GS.wrongCount++; GS.streak = 0;
         GS.weaknessTracker["email"] = (GS.weaknessTracker["email"] || 0) + 1;
-        spawnEnemyAttack();
-        shakeArena();
-        spawnXP("-150XP", false);
-        showFeedback(
-          `Wrong file! "${GS.attachSelected}" is not the essay! Teacher is confused!`,
-          false,
-        );
+        spawnEnemyAttack(); shakeArena(); spawnXP("-100XP", false);
+        showFeedback(`Wrong file! "${GS.attachSelected}" is not the essay! -100XP`, false, proceed);
       }
       updateXP();
-      const sb = document.getElementById("send-btn");
-      if (sb) sb.disabled = true;
-      setTimeout(() => {
-        hideFeedback();
-        GS.inputLocked = false;
-        GS.currentSubIdx++;
-        if (GS.currentSubIdx < lvl.questions.length)
-          renderGmailAttachQ(levelIdx);
-        else endLevel(levelIdx);
-      }, correct ? 2300 : 4500);
+      const sb = document.getElementById("send-btn"); if (sb) sb.disabled = true;
     };
 
     function updateChecklist(key, done) {
@@ -7633,6 +7797,10 @@
         if (currentFileIdx >= lvl.files.length) return;
 
         const currentFile = lvl.files[currentFileIdx];
+        const updateRound = () => {
+          document.getElementById("bhud-level").textContent = "Round " + (currentFileIdx + 1) + "/" + lvl.files.length;
+        };
+        updateRound();
         const folderFilters = {
           Math: "hue-rotate(180deg) brightness(1.2)",
           Science: "hue-rotate(70deg) brightness(1.2)",
@@ -7664,6 +7832,7 @@
             .join("")}
       </div>`;
         GS.currentBattleRefresh = () => {
+          updateRound();
           const hintTitle = wrap.querySelector(".px-folder-hint-title");
           if (hintTitle)
             hintTitle.textContent = t("folderSortTitle", {
@@ -7686,14 +7855,15 @@
       setBattleDialog("folderSortPrompt", {}, "SYS");
 
       startTimer(lvl.timeLimit, () => {
-        showFeedback(
-          `Time's up! ${correctCount}/${lvl.files.length} correct!`,
-          correctCount >= lvl.files.length / 2,
-        );
-        setTimeout(() => {
+        const isPass = correctCount >= lvl.files.length / 2;
+        const proceed = () => {
           hideFeedback();
           endLevel(idx);
-        }, correctCount >= lvl.files.length / 2 ? 2100 : 4500);
+        };
+        showFeedback(`Time's up! ${correctCount}/${lvl.files.length} correct!`, isPass, proceed);
+        if (isPass) {
+          setTimeout(proceed, 2100);
+        }
       });
       GS.inputLocked = false;
 
@@ -7734,14 +7904,17 @@
             GS.xp += bonus;
             spawnXP(`+${bonus} BONUS!`, true);
           }
-          showFeedback(
-            `All filed! {correctCount}/{totalCount} correct!${bonus ? ` +${bonus} BONUS!` : ""}`,
-            correctCount >= lvl.files.length / 2,
-          );
-          setTimeout(() => {
+          
+          const proceed = () => {
             hideFeedback();
             endLevel(idx);
-          }, correctCount >= lvl.files.length / 2 ? 2200 : 4500);
+          };
+          
+          const isPass = correctCount >= lvl.files.length / 2;
+          showFeedback(`All filed! {correctCount}/{totalCount} correct!${bonus ? ` +${bonus} BONUS!` : ""}`, isPass, proceed);
+          if (isPass) {
+            setTimeout(proceed, 2200);
+          }
         } else {
           render();
         }
@@ -7759,6 +7932,10 @@
           return;
         }
         const q = qs[qIdx];
+        const updateRound = () => {
+          document.getElementById("bhud-level").textContent = "Round " + (qIdx + 1) + "/" + qs.length;
+        };
+        updateRound();
         const wrap = document.getElementById("choices-wrap");
         GS.permSelections = {};
         wrap.innerHTML = `
@@ -7787,6 +7964,7 @@
       </div>`;
         setBattleDialog(q.dialog, {}, q.tag || "SYS");
         GS.currentBattleRefresh = () => {
+          updateRound();
           const wrap = document.getElementById("choices-wrap");
           if (!wrap) return;
           const header = wrap.querySelector(".px-share-header");
@@ -7817,7 +7995,7 @@
           if (submitBtn) submitBtn.textContent = t("submitPermissions");
         };
         GS.inputLocked = false;
-        startTimer(15, () => {
+        startTimer(20, () => {
           if (!GS.inputLocked) window.submitPerms(idx, qIdx);
         });
         window.setPerm = function (name, role, btn) {
@@ -7853,29 +8031,28 @@
             }
           });
           if (allCorrect) {
-            xpEarned += q2.bonusAll;
-            spawnXP(`+${xpEarned * 10}XP +BONUS!`, true);
+            xpEarned += q2.bonusAll; spawnXP(`+${xpEarned * 10}XP +BONUS!`, true);
           } else {
             spawnXP(`+${xpEarned * 10}XP`, xpEarned > 0);
           }
           GS.xp += xpEarned * 10;
           if (!allCorrect) {
-            GS.xp = Math.max(0, GS.xp);
-            spawnEnemyAttack();
-            shakeArena();
+            GS.xp = Math.max(0, GS.xp); spawnEnemyAttack(); shakeArena();
           }
           updateXP();
-          showFeedback(
-            t(allCorrect ? q2.feedback.correct : q2.feedback.wrong),
-            allCorrect,
-          );
-          setTimeout(() => {
+          
+          const proceed = () => {
             hideFeedback();
             GS.inputLocked = false;
             GS.permSelections = {};
             qIdx++;
             doQ();
-          }, allCorrect ? 2200 : 4500);
+          };
+
+          showFeedback(t(allCorrect ? q2.feedback.correct : q2.feedback.wrong), allCorrect, proceed);
+          if (allCorrect) {
+            setTimeout(proceed, 2200);
+          }
         };
       }
       doQ();
@@ -7918,14 +8095,11 @@
 
         if (now >= bossEndTime) {
           clearTimer();
-          showFeedback(
-            "⏰ TIME IS UP! Kuya Ben missed the deadline! 😱",
-            false,
-          );
-          setTimeout(() => {
+          const proceed = () => {
             hideFeedback();
             endLevel(idx);
-          }, 4500);
+          };
+          showFeedback("⏰ TIME IS UP! Kuya Ben missed the deadline! 😱", false, proceed);
         }
       }, 100);
 
@@ -7951,6 +8125,10 @@
           return;
         }
         const step = lvl.steps[GS.bossStep];
+        const updateRound = () => {
+          document.getElementById("bhud-level").textContent = "Round " + (GS.bossStep + 1) + "/" + lvl.steps.length;
+        };
+        updateRound();
 
         const stepIndicator = document.getElementById("boss-step-indicator");
         if (stepIndicator)
@@ -7980,6 +8158,7 @@
         }
         setBattleDialog(step.dialog, {}, step.tag || "SYS");
         GS.currentBattleRefresh = () => {
+          updateRound();
           const wrap = document.getElementById("choices-wrap");
           if (!wrap) return;
           if (step.uiType === "choice" || step.uiType === "gmail-subject") {
@@ -8208,12 +8387,12 @@
 
         document.getElementById("boss-send-btn").onclick = () => {
           if (!window.bossSelectedFile) {
-            handleBossChoice({ correct: false, xp: -200 }, step);
+            handleBossChoice({ correct: false, xp: -20 }, step);
             return;
           }
           const isCorrect = window.bossSelectedFile === step.correctFile;
           handleBossChoice(
-            { correct: isCorrect, xp: isCorrect ? 25 : -15 },
+            { correct: isCorrect, xp: isCorrect ? 25 : -10 },
             step,
           );
         };
@@ -8232,7 +8411,7 @@
         step.folders.forEach((f) => {
           const folder = document.createElement("div");
           folder.className = "px-folder";
-          folder.innerHTML = `<div class="px-folder-emoji" style="filter:${folderFilters[f] || "none"}">📁</div><div class="px-folder-label">${f}</div>`;
+          folder.innerHTML = `<div class="px-folder-emoji" style="filter:${folderFilters[f] || "none"}">📁</div><div class="px-folder-label">${t(f)}</div>`;
           folder.onclick = () => {
             const isCorrect = f === step.file.folder;
             handleBossChoice(
@@ -8283,61 +8462,36 @@
         const correct = xp > 0 || (choice.correct === true);
 
         const wrap = document.getElementById("choices-wrap");
-        wrap
-          .querySelectorAll("button, .px-file-chip, .px-folder")
-          .forEach((el) => {
-            el.style.pointerEvents = "none";
-            el.style.opacity = "0.7";
-          });
+        wrap.querySelectorAll("button, .px-file-chip, .px-folder").forEach((el) => {
+          el.style.pointerEvents = "none"; el.style.opacity = "0.7";
+        });
 
         if (step.choices) {
           const grid = wrap.querySelector(".choice-grid");
-          highlightChoicesGeneric(
-            grid,
-            step.choices.indexOf(choice),
-            step.choices,
-          );
+          highlightChoicesGeneric(grid, step.choices.indexOf(choice), step.choices);
         }
 
-        if (correct) {
-          GS.xp += xp;
-          GS.correctCount++;
-          bossCorrect++;
-          GS.streak++;
-          if (GS.streak > GS.maxStreak) GS.maxStreak = GS.streak;
-          spawnFireball();
-          damageEnemy(15);
-          spawnXP(`+${xp}XP`, true);
-          showFeedback(
-            `✓ Correct! ${GS.bossStep + 1}/${lvl.steps.length} done! Next player!`,
-            true,
-          );
-        } else {
-          GS.xp = Math.max(0, GS.xp + xp);
-          GS.wrongCount++;
-          GS.streak = 0;
+        const proceed = () => {
+          hideFeedback(); GS.inputLocked = false; GS.bossStep++; doStep();
+        };
 
+        if (correct) {
+          GS.xp += xp; GS.correctCount++; bossCorrect++; GS.streak++;
+          if (GS.streak > GS.maxStreak) GS.maxStreak = GS.streak;
+          spawnFireball(); damageEnemy(15); spawnXP(`+${xp}XP`, true);
+          showFeedback(`✓ Correct! ${GS.bossStep + 1}/${lvl.steps.length} done! Next player!`, true);
+          setTimeout(proceed, 1800);
+        } else {
+          GS.xp = Math.max(0, GS.xp + xp); GS.wrongCount++; GS.streak = 0;
           bossEndTime = Math.max(Date.now(), bossEndTime - 10000);
-          const remaining = Math.max(
-            0,
-            Math.ceil((bossEndTime - Date.now()) / 1000),
-          );
+          const remaining = Math.max(0, Math.ceil((bossEndTime - Date.now()) / 1000));
           lastBossDisplay = remaining;
           document.getElementById("timer-num").textContent = lastBossDisplay;
-
-          spawnEnemyAttack();
-          shakeArena();
-          spawnXP(`${xp}XP`, false);
-          showFeedback(`✗ Wrong! -10s Penalty! Stay focused!`, false);
+          spawnEnemyAttack(); shakeArena(); spawnXP(`${xp}XP`, false);
+          showFeedback(`✗ Wrong! -10s Penalty! Stay focused!`, false, proceed);
         }
         updateXP();
         updateStreak();
-        setTimeout(() => {
-          hideFeedback();
-          GS.inputLocked = false;
-          GS.bossStep++;
-          doStep();
-        }, correct ? 1800 : 4500);
       }
       doStep();
     }
@@ -8477,15 +8631,31 @@
       }, 25);
     }
 
-    function showFeedback(text, correct) {
+    function showFeedback(text, correct, onAcknowledge) {
       const el = document.getElementById("b-feedback");
-      el.textContent = text;
+      el.innerHTML = `<div>${text}</div>`;
       el.className = "b-feedback " + (correct ? "correct" : "wrong");
-      el.style.display = "block";
+      el.style.display = "flex";
+      
+      if (!correct && onAcknowledge) {
+        const btn = document.createElement("button");
+        btn.className = "px-btn ye";
+        btn.style.fontSize = "10px";
+        btn.style.padding = "8px 16px";
+        btn.style.marginTop = "10px";
+        btn.textContent = currentLang === "fil" ? "SUSUNOD" : "NEXT";
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          hideFeedback();
+          onAcknowledge();
+        };
+        el.appendChild(btn);
+      }
     }
     function hideFeedback() {
       const el = document.getElementById("b-feedback");
       el.style.display = "none";
+      el.innerHTML = "";
     }
 
     function spawnXP(text, good) {
@@ -8729,8 +8899,9 @@
     function playCountdownWarning() {
       const sound = document.getElementById("countdownWarning");
       if (!sound) return;
+      if (!sound || !isSoundOn) return; // Only play if sound is on
       sound.currentTime = 0;
-      sound.volume = 1;
+      sound.volume = masterVolume; // Use master volume
       sound.play().catch(() => { });
     }
 
@@ -9189,6 +9360,30 @@
       if (introMusicEnabled) playIntroMusic();
 
       const titleEl = document.getElementById("scr-title");
+
+      // Load sound settings from localStorage
+      const savedSoundOn = localStorage.getItem("gameSoundOn");
+      const savedMasterVolume = localStorage.getItem("gameMasterVolume");
+
+      if (savedMasterVolume !== null) {
+        masterVolume = parseFloat(savedMasterVolume);
+      }
+      if (savedSoundOn !== null) {
+        isSoundOn = savedSoundOn === "true";
+      }
+
+      // Apply initial sound state to all sliders and icons
+      document.querySelectorAll(".volume-slider").forEach(slider => {
+        slider.value = masterVolume;
+      });
+      document.querySelectorAll(".vol-icon").forEach(icon => {
+        icon.textContent = masterVolume === 0 ? "🔇" : "🔊";
+      });
+
+      document.querySelectorAll("audio").forEach(audio => {
+        audio.volume = isSoundOn ? masterVolume : 0;
+      });
+
       const handleTitleGesture = () => {
         if (titleEl.classList.contains("active")) playIntroMusic();
       };
@@ -9235,7 +9430,7 @@
         if (!isButton) return;
 
         const s = document.getElementById("clickSound");
-        if (s) {
+        if (s && isSoundOn) { // Only play if sound is on
           s.currentTime = 0;
           s.volume = 0.4;
           s.play().catch((err) =>
@@ -9247,5 +9442,3 @@
     );
   </script>
 </body>
-
-</html>
