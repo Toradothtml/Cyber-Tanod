@@ -7486,7 +7486,8 @@
           GS.weaknessTracker[lvl.weakKey] = (GS.weaknessTracker[lvl.weakKey] || 0) + 1;
           shakeArena();
           spawnXP("-50XP", false);
-          showFeedback(t("Time up! -50XP"), false, proceed);
+          showFeedback(t("Time up! -50XP"), false);
+          setTimeout(proceed, 1800);
         } else {
           const correct = answer === item.good;
           if (correct) {
@@ -7500,7 +7501,8 @@
             GS.wrongCount++; GS.xp = Math.max(0, GS.xp - 50); levelXP -= 5; streak = 0;
             GS.weaknessTracker[lvl.weakKey] = (GS.weaknessTracker[lvl.weakKey] || 0) + 1;
             spawnEnemyAttack(); shakeArena(); spawnXP("-50XP", false);
-            showFeedback(item.explain || (item.good ? "This IS a good name!" : "This IS a bad name!"), false, proceed);
+            showFeedback(item.explain || (item.good ? "This IS a good name!" : "This IS a bad name!"), false);
+            setTimeout(proceed, 1800);
           }
         }
         updateXP();
