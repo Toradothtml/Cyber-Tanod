@@ -3757,11 +3757,12 @@
               " onclick="goto('scr-title')">
             BACK
           </button>
-          <div style="display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 4px 10px; border: 2px solid var(--green); border-radius: 4px; box-shadow: 4px 4px 0 rgba(0,0,0,0.6);">
+          <div
+            style="display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 4px 10px; border: 2px solid var(--green); border-radius: 4px; box-shadow: 4px 4px 0 rgba(0,0,0,0.6);">
             <span class="vol-icon" style="font-size: 14px; color: var(--green);">🔊</span>
-            <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" 
-                   style="width: 80px; cursor: pointer; accent-color: var(--green); margin: 0;"
-                   oninput="adjustVolume(this.value)">
+            <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5"
+              style="width: 80px; cursor: pointer; accent-color: var(--green); margin: 0;"
+              oninput="adjustVolume(this.value)">
           </div>
         </div>
         <div class="hud-team" id="map-team">TEAM ---</div>
@@ -3827,11 +3828,12 @@
             onclick="startLevel(GS.currentLevel)">
             RESTART
           </button>
-          <div style="display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 4px 10px; border: 2px solid var(--green); border-radius: 4px; box-shadow: 4px 4px 0 rgba(0,0,0,0.6);">
+          <div
+            style="display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 4px 10px; border: 2px solid var(--green); border-radius: 4px; box-shadow: 4px 4px 0 rgba(0,0,0,0.6);">
             <span class="vol-icon" style="font-size: 14px; color: var(--green);">🔊</span>
-            <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" 
-                   style="width: 80px; cursor: pointer; accent-color: var(--green); margin: 0;"
-                   oninput="adjustVolume(this.value)">
+            <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5"
+              style="width: 80px; cursor: pointer; accent-color: var(--green); margin: 0;"
+              oninput="adjustVolume(this.value)">
           </div>
         </div>
       </div>
@@ -3903,7 +3905,8 @@
         <div class="lv-name" id="lv-name">The Messy Desktop</div>
         <div class="lv-enemy" id="lv-enemy">vs CHAOS DESKTOP</div>
       </div>
-      <div class="b-feedback" id="b-feedback" style="display: none; flex-direction: column; align-items: center; gap: 10px;"></div>
+      <div class="b-feedback" id="b-feedback"
+        style="display: none; flex-direction: column; align-items: center; gap: 10px;"></div>
     </div>
     <div class="battle-bottom">
       <div class="dialog-row">
@@ -4968,20 +4971,20 @@
       const allAudio = document.querySelectorAll("audio");
       allAudio.forEach(audio => {
         audio.volume = masterVolume;
-        
+
         // If volume was 0 and is now > 0, we might need to resume if it was paused to save resources
         if (!isSoundOn && !audio.paused) {
           audio.__wasPlayingBeforeMute = !audio.paused;
           audio.pause();
         } else if (isSoundOn && audio.__wasPlayingBeforeMute && audio.paused) {
-          audio.play().catch(() => {});
+          audio.play().catch(() => { });
           audio.__wasPlayingBeforeMute = false;
         }
       });
 
       localStorage.setItem("gameMasterVolume", masterVolume);
       localStorage.setItem("gameSoundOn", isSoundOn);
-      
+
       // Refresh music state based on current screen
       if (typeof updateAudioState === "function") updateAudioState();
     }
@@ -5112,6 +5115,7 @@
         enemy: "CHAOS DESKTOP",
         weakKey: "naming",
         uiType: "choice",
+        questionTime: 22,
         questions: [
           {
             dialog:
@@ -5226,12 +5230,6 @@
             good: false,
             explain: 'Too many "FINAL" words! Just use v2.',
           },
-          { text: "Reyes_Science_HW.docx", good: true },
-          {
-            text: "asdf1234.docx",
-            good: false,
-            explain: "Random letters are not a good file name!",
-          },
         ],
       },
       // LEVEL 3 — Email Subject Line (Gmail UI)
@@ -5308,28 +5306,6 @@
                 "Very good! Subject, Pangkat number, and Grade — everything Teacher needs!",
               wrong:
                 "Subject lines should show which Pangkat and Grade level you are in!",
-            },
-          },
-          {
-            dialog:
-              "Teacher Maria asked a question and Ben wants to reply. Which subject is best for REPLIES?",
-            tag: "TeacherMaria",
-            bodyPreview: "Re: Math Homework. Yes po Teacher, I will check the corrections. Thank you!",
-            choices: [
-              {
-                text: "Re: Math Homework - Ben Dela Cruz - Grade 4",
-                xp: 25,
-                correct: true,
-              },
-              { text: "re about my assignment", xp: -5 },
-              { text: "Math Homework", xp: 15 },
-              { text: "(new email with no subject)", xp: -5 },
-            ],
-            feedback: {
-              correct:
-                'Using "Re:" helps Teacher follow your conversation easily!',
-              wrong:
-                'Always use "Re:" in the subject line when replying to an email!',
             },
           },
         ],
@@ -5409,6 +5385,7 @@
         enemy: "WRONG PERMISSIONS",
         weakKey: "permissions",
         uiType: "permissions",
+        questionTime: 30,
         questions: [
           {
             dialog:
@@ -5580,15 +5557,6 @@
             text: "MAAM GRADE KO PO BILISAN MO",
             good: false,
             explain: "Don't shout at your teacher! Be respectful.",
-          },
-          {
-            text: "Good afternoon po Teacher. This is Ben. Regards po.",
-            good: true,
-          },
-          {
-            text: "k ty",
-            good: false,
-            explain: 'This is slang. Say "Thank you po" instead!',
           },
         ],
       },
@@ -7293,7 +7261,7 @@
             btn.innerHTML = (icon ? icon + " " : "") + t(c.text);
           });
         };
-        const timeForQ = Math.max(
+        const timeForQ = lvl.questionTime || Math.max(
           14,
           Math.round(q.dialog.length / 7) +
           q.choices.reduce((a, c) => a + c.text.length, 0) / 9 +
@@ -7320,7 +7288,7 @@
         const xp = choiceObj ? (choiceObj.xp || -5) : -5;
         const correct = xp > 0;
         highlightChoices(choiceObj, q.choices);
-        
+
         const proceed = () => {
           hideFeedback();
           GS.inputLocked = false;
@@ -7556,7 +7524,7 @@
           btn.addEventListener("click", () => handleSC(c, q));
           grid.appendChild(btn);
         });
-        
+
         // Sync Gmail mockup height to the choices natural height
         setTimeout(() => {
           const gmailWrap = wrap.querySelector(".px-gmail-wrap");
@@ -7609,7 +7577,7 @@
             if (sp) sp.textContent = t(choice.text);
           }
           highlightChoicesGeneric(grid, choice ? q.choices.indexOf(choice) : -1, q.choices);
-          
+
           const proceed = () => {
             hideFeedback();
             GS.inputLocked = false;
@@ -7906,12 +7874,12 @@
             GS.xp += bonus;
             spawnXP(`+${bonus} BONUS!`, true);
           }
-          
+
           const proceed = () => {
             hideFeedback();
             endLevel(idx);
           };
-          
+
           const isPass = correctCount >= lvl.files.length / 2;
           showFeedback(`All filed! {correctCount}/{totalCount} correct!${bonus ? ` +${bonus} BONUS!` : ""}`, isPass, proceed);
           if (isPass) {
@@ -7997,7 +7965,7 @@
           if (submitBtn) submitBtn.textContent = t("submitPermissions");
         };
         GS.inputLocked = false;
-        startTimer(20, () => {
+        startTimer(lvl.questionTime || 20, () => {
           if (!GS.inputLocked) window.submitPerms(idx, qIdx);
         });
         window.setPerm = function (name, role, btn) {
@@ -8042,7 +8010,7 @@
             GS.xp = Math.max(0, GS.xp); spawnEnemyAttack(); shakeArena();
           }
           updateXP();
-          
+
           const proceed = () => {
             hideFeedback();
             GS.inputLocked = false;
@@ -8638,7 +8606,7 @@
       el.innerHTML = `<div>${text}</div>`;
       el.className = "b-feedback " + (correct ? "correct" : "wrong");
       el.style.display = "flex";
-      
+
       if (!correct && onAcknowledge) {
         const btn = document.createElement("button");
         btn.className = "px-btn ye";
